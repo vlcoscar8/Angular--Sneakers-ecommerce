@@ -1,10 +1,26 @@
 <header class="header">
   <ul class="header__list">
     <li class="element">
-      <a [routerLink]="['']" class="link">Home</a>
+      <a
+        [routerLink]="['']"
+        [ngStyle]="{
+          color: path === '/' ? 'blue' : 'black'
+        }"
+        (click)="onClick()"
+        class="link"
+        >Home</a
+      >
     </li>
     <li class="element">
-      <a [routerLink]="['/product-list']" class="link">Product List</a>
+      <a
+        [routerLink]="['/product-list']"
+        [ngStyle]="{
+          color: path === '/product-list' ? 'blue' : 'black'
+        }"
+        (click)="onClick()"
+        class="link"
+        >Product List</a
+      >
     </li>
   </ul>
 </header>

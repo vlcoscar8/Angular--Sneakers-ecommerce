@@ -1,0 +1,13 @@
+.links {
+  display: flex;
+  gap: 10px;
+
+  p {
+    color: rgb(183, 183, 183);
+    font-size: 15px;
+  }
+
+  .link--active {
+    color: black;
+  }
+}
