@@ -1,2 +1,7 @@
-<p>product-list works!</p>
-<button [routerLink]="['/product', 1]">Product detail</button>
+<p>product-list:</p>
+<div class="gallery">
+  <app-product
+    *ngFor="let product of products"
+    [product]="product"
+  ></app-product>
+</div>

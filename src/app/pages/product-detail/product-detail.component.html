@@ -1,2 +1,12 @@
-<p>product-detail works!</p>
-<app-product></app-product>
+<p>Product detail:</p>
+<div *ngIf="product">
+  <h1>{{ product.title }}</h1>
+  <h2>{{ product.brand }}</h2>
+  <h2>{{ product.genre }}</h2>
+  <div>
+    <img [src]="product.img[0]" />
+    <img [src]="product.img[1]" />
+    <img [src]="product.img[2]" />
+  </div>
+  <p>{{ product.description }}</p>
+</div>
