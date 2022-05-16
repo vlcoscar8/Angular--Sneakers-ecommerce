@@ -1,25 +1,71 @@
 .header {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  gap: 1rem;
+  background-color: black;
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.55);
+
+  &__logo {
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(226, 175, 79);
+      transition: all 0.3s ease;
+    }
+  }
 
   &__list {
     display: flex;
-    gap: 10px;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    gap: 2rem;
 
-    .element {
-      list-style-type: none;
-    }
+    li {
+      height: 2.3rem;
+      border-bottom: 1.3px solid transparent;
+      color: white;
+      cursor: pointer;
 
-    .link {
-      text-decoration: none;
-      color: black;
+      a {
+        color: inherit;
+        font-size: 1.5rem;
+
+        &:hover {
+          color: rgb(226, 175, 79);
+          transition: all 0.3s ease;
+        }
+      }
 
       &:hover {
-        color: blue;
+        border-bottom: 1.3px solid rgb(226, 175, 79);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2rem;
+
+    &--cart {
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(226, 175, 79);
+        transition: all 0.3s ease;
+      }
+    }
+    &--user {
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(226, 175, 79);
+        transition: all 0.3s ease;
       }
     }
   }

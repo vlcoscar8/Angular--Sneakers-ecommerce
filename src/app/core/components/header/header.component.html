@@ -1,26 +1,17 @@
 <header class="header">
+  <div class="header__logo" [routerLink]="['']">
+    <h1>SNEAKERS</h1>
+  </div>
   <ul class="header__list">
-    <li class="element">
-      <a
-        [routerLink]="['']"
-        [ngStyle]="{
-          color: path === '/' ? 'blue' : 'black'
-        }"
-        (click)="onClick()"
-        class="link"
-        >Home</a
-      >
+    <li>
+      <a [routerLink]="['/product-list', 'Woman']">Mujer</a>
     </li>
-    <li class="element">
-      <a
-        [routerLink]="['/product-list']"
-        [ngStyle]="{
-          color: path === '/product-list' ? 'blue' : 'black'
-        }"
-        (click)="onClick()"
-        class="link"
-        >Product List</a
-      >
+    <li>
+      <a [routerLink]="['/product-list', 'Man']">Hombre</a>
     </li>
   </ul>
+  <div class="header__nav">
+    <i class="fa-solid fa-cart-shopping header__nav--cart"></i>
+    <i class="fa-solid fa-user header__nav--user"></i>
+  </div>
 </header>
