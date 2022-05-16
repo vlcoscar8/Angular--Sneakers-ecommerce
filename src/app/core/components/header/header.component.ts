@@ -1,12 +1,19 @@
 import { NavigationEnd, Router } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
+  public query?: string;
   public isDesktop?: boolean = false;
   public navClicked?: boolean = false;
   public showFilter?: boolean = false;
@@ -25,7 +32,19 @@ export class HeaderComponent implements OnInit {
     window.innerWidth > 500
       ? (this.isDesktop = true)
       : (this.isDesktop = false);
+
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.query = e.url.split(';')[1];
+      }
+
+      if (!this.query) {
+        this.genre = '';
+      }
+    });
   }
+
+  ngOnChanges(): void {}
 
   public btnClick() {
     this.navClicked = !this.navClicked;
@@ -41,6 +60,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public closeFilter() {
-    this.showFilter = !this.showFilter;
+    this.showFilter = false;
   }
 }
