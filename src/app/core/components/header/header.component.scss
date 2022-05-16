@@ -35,23 +35,16 @@ $breakpoint: 1200px;
     display: flex;
     gap: 2rem;
 
-    li {
-      height: 2.3rem;
-      border-bottom: 1.3px solid transparent;
+    &--btn {
       color: white;
+      background-color: transparent;
+      border: none;
+      font-size: 1.5rem;
       cursor: pointer;
-
-      a {
-        color: inherit;
-        font-size: 1.5rem;
-
-        &:hover {
-          color: rgb(226, 175, 79);
-          transition: all 0.3s ease;
-        }
-      }
+      border-bottom: 1.3px solid transparent;
 
       &:hover {
+        color: rgb(226, 175, 79);
         border-bottom: 1.3px solid rgb(226, 175, 79);
         transition: all 0.3s ease;
       }

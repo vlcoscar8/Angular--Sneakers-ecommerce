@@ -10,7 +10,7 @@ const routes: Routes = [
       import('src/app/pages/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'product-list/:genre',
+    path: 'product-list',
     loadChildren: () =>
       import('src/app/pages/product-list/product-list.module').then(
         (m) => m.ProductListModule

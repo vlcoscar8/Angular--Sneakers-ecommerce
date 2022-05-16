@@ -2,14 +2,10 @@
   <div class="header__logo" [routerLink]="['']">
     <h1>SNEAKERS</h1>
   </div>
-  <ul class="header__list" *ngIf="isDesktop">
-    <li>
-      <a [routerLink]="['/product-list', 'Woman']">Mujer</a>
-    </li>
-    <li>
-      <a [routerLink]="['/product-list', 'Man']">Hombre</a>
-    </li>
-  </ul>
+  <div class="header__list" *ngIf="isDesktop">
+    <button (click)="setGenre('Woman')" class="header__list--btn">Mujer</button>
+    <button (click)="setGenre('Man')" class="header__list--btn">Hombre</button>
+  </div>
   <div
     class="header__navbar"
     [ngClass]="{
@@ -29,3 +25,8 @@
   [navClicked]="navClicked"
   (click)="btnClick()"
 ></app-responsive-nav>
+<app-header-filter
+  [genre]="genre"
+  *ngIf="showFilter"
+  (click)="closeFilter()"
+></app-header-filter>

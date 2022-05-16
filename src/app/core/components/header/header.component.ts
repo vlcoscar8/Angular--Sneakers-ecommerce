@@ -10,6 +10,8 @@ export class HeaderComponent implements OnInit {
   public path: string = '/';
   public isDesktop?: boolean = false;
   public navClicked?: boolean = false;
+  public showFilter?: boolean = false;
+  public genre?: string;
 
   constructor(private router: Router) {}
 
@@ -20,7 +22,11 @@ export class HeaderComponent implements OnInit {
       : (this.isDesktop = false);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.innerWidth > 500
+      ? (this.isDesktop = true)
+      : (this.isDesktop = false);
+  }
 
   public onClick() {
     this.router.events.subscribe((e) => {
@@ -32,5 +38,18 @@ export class HeaderComponent implements OnInit {
 
   public btnClick() {
     this.navClicked = !this.navClicked;
+  }
+
+  public setGenre(text: string) {
+    if (!this.showFilter) {
+      this.showFilter = true;
+    } else {
+      !!this.showFilter;
+    }
+    this.genre = text;
+  }
+
+  public closeFilter() {
+    this.showFilter = !this.showFilter;
   }
 }

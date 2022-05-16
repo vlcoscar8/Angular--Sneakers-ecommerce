@@ -1,0 +1,17 @@
+<div class="header__filter">
+  <button [routerLink]="['/product-list', { genre: genre, brand: '' }]">
+    Todas las zapatillas
+  </button>
+  <button [routerLink]="['/product-list', { genre: genre, brand: 'Nike' }]">
+    Nike
+  </button>
+  <button [routerLink]="['/product-list', { genre: genre, brand: 'Adidas' }]">
+    Adidas
+  </button>
+  <button [routerLink]="['/product-list', { genre: genre, brand: 'Reebok' }]">
+    Reebok
+  </button>
+  <button [routerLink]="['/product-list', { genre: genre, brand: 'Puma' }]">
+    Puma
+  </button>
+</div>

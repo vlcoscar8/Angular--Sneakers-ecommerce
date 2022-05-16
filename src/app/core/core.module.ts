@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ResponsiveNavComponent } from './components/header/components/responsive-nav/responsive-nav.component';
 import { NavBtnComponent } from './components/header/components/nav-btn/nav-btn.component';
+import { HeaderFilterComponent } from './components/header/components/header-filter/header-filter.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { NavBtnComponent } from './components/header/components/nav-btn/nav-btn.
     FooterComponent,
     ResponsiveNavComponent,
     NavBtnComponent,
+    HeaderFilterComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [FooterComponent, HeaderComponent],
