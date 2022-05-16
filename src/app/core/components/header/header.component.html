@@ -2,7 +2,7 @@
   <div class="header__logo" [routerLink]="['']">
     <h1>SNEAKERS</h1>
   </div>
-  <ul class="header__list">
+  <ul class="header__list" *ngIf="isDesktop">
     <li>
       <a [routerLink]="['/product-list', 'Woman']">Mujer</a>
     </li>
@@ -10,8 +10,48 @@
       <a [routerLink]="['/product-list', 'Man']">Hombre</a>
     </li>
   </ul>
-  <div class="header__nav">
-    <i class="fa-solid fa-cart-shopping header__nav--cart"></i>
-    <i class="fa-solid fa-user header__nav--user"></i>
+  <div
+    class="header__navbar"
+    [ngClass]="{
+      'navbar--active': navClicked
+    }"
+  >
+    <i class="fa-solid fa-cart-shopping header__navbar--cart"></i>
+    <i class="fa-solid fa-user header__navbar--user"></i>
+    <div class="header__navbar--btn" *ngIf="!isDesktop" (click)="btnClick()">
+      <div
+        class="top"
+        [ngClass]="{
+          'top--active': navClicked
+        }"
+      ></div>
+      <div
+        class="down"
+        [ngClass]="{
+          'down--active': navClicked
+        }"
+      ></div>
+    </div>
   </div>
 </header>
+<nav
+  class="navbar"
+  [ngStyle]="{
+    top: navClicked ? '7rem' : '-10rem'
+  }"
+>
+  <button
+    [routerLink]="['/product-list', 'Woman']"
+    (click)="btnClick()"
+    class="navbar__btn navbar__btn--woman"
+  >
+    Mujer
+  </button>
+  <button
+    [routerLink]="['/product-list', 'Man']"
+    (click)="btnClick()"
+    class="navbar__btn navbar__btn--man"
+  >
+    Hombre
+  </button>
+</nav>
