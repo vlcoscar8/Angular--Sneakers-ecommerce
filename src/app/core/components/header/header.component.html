@@ -6,12 +6,9 @@
     <button
       (click)="setGenre('Woman')"
       [ngStyle]="{
-        color:
-          query === 'genre=Woman' || genre === 'Woman'
-            ? 'rgb(226, 175, 79)'
-            : 'white',
+        color: query === 'genre=Woman' ? 'rgb(226, 175, 79)' : 'white',
         borderBottom:
-          query === 'genre=Woman' || genre === 'Woman'
+          query === 'genre=Woman'
             ? '1.3px solid rgb(226, 175, 79)'
             : '1.3px solid transparent'
       }"
@@ -22,12 +19,9 @@
     <button
       (click)="setGenre('Man')"
       [ngStyle]="{
-        color:
-          query === 'genre=Man' || genre === 'Man'
-            ? 'rgb(226, 175, 79)'
-            : 'white',
+        color: query === 'genre=Man' ? 'rgb(226, 175, 79)' : 'white',
         borderBottom:
-          query === 'genre=Man' || genre === 'Man'
+          query === 'genre=Man'
             ? '1.3px solid rgb(226, 175, 79)'
             : '1.3px solid transparent'
       }"

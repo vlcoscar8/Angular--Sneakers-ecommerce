@@ -31,10 +31,6 @@ export class HeaderComponent implements OnInit {
       if (e instanceof NavigationEnd) {
         this.query = e.url.split(';')[1];
       }
-
-      if (!this.query) {
-        this.genre = '';
-      }
     });
   }
 
@@ -43,12 +39,12 @@ export class HeaderComponent implements OnInit {
   }
 
   public setGenre(text: string) {
-    if (!this.showFilter) {
-      this.showFilter = true;
+    if (this.genre === text && this.showFilter) {
+      this.showFilter = false;
     } else {
-      !!this.showFilter;
+      this.genre = text;
+      this.showFilter = true;
     }
-    this.genre = text;
   }
 
   public closeFilter() {
