@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { products } from './../../shared/components/product/config/product.config';
 import { IProduct } from './../../shared/components/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  public products: IProduct[] = products as IProduct[];
+  public products?: IProduct[];
 
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(async (e) => {
+      const genre = e['genre'];
+      const response = await fetch(
+        `https://sneakersecommerceapi.vercel.app//products?genre=${genre}`
+      );
+      this.products = await response.json();
+    });
+  }
 }
