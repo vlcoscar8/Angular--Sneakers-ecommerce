@@ -17,7 +17,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (e) => {
       const genre = e['genre'];
-      this.brand = e['brand'];
+      e['brand'] ? (this.brand = e['brand']) : (this.brand = '');
+
       const response = await fetch(
         `https://sneakersecommerceapi.vercel.app//products?genre=${genre}&brand=${this.brand}`
       );
