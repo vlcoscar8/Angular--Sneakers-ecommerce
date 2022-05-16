@@ -1,18 +1,12 @@
 import { NavigationEnd, Router } from '@angular/router';
-import {
-  Component,
-  HostListener,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
   public query?: string;
   public isDesktop?: boolean = false;
   public navClicked?: boolean = false;
@@ -43,8 +37,6 @@ export class HeaderComponent implements OnInit, OnChanges {
       }
     });
   }
-
-  ngOnChanges(): void {}
 
   public btnClick() {
     this.navClicked = !this.navClicked;
