@@ -1,0 +1,14 @@
+<div class="header__navbar--btn" *ngIf="!isDesktop">
+  <div
+    class="top"
+    [ngClass]="{
+      'top--active': navClicked
+    }"
+  ></div>
+  <div
+    class="down"
+    [ngClass]="{
+      'down--active': navClicked
+    }"
+  ></div>
+</div>

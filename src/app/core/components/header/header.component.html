@@ -18,40 +18,14 @@
   >
     <i class="fa-solid fa-cart-shopping header__navbar--cart"></i>
     <i class="fa-solid fa-user header__navbar--user"></i>
-    <div class="header__navbar--btn" *ngIf="!isDesktop" (click)="btnClick()">
-      <div
-        class="top"
-        [ngClass]="{
-          'top--active': navClicked
-        }"
-      ></div>
-      <div
-        class="down"
-        [ngClass]="{
-          'down--active': navClicked
-        }"
-      ></div>
-    </div>
+    <app-nav-btn
+      [navClicked]="navClicked"
+      [isDesktop]="isDesktop"
+      (click)="btnClick()"
+    ></app-nav-btn>
   </div>
 </header>
-<nav
-  class="navbar"
-  [ngStyle]="{
-    top: navClicked ? '7rem' : '-10rem'
-  }"
->
-  <button
-    [routerLink]="['/product-list', 'Woman']"
-    (click)="btnClick()"
-    class="navbar__btn navbar__btn--woman"
-  >
-    Mujer
-  </button>
-  <button
-    [routerLink]="['/product-list', 'Man']"
-    (click)="btnClick()"
-    class="navbar__btn navbar__btn--man"
-  >
-    Hombre
-  </button>
-</nav>
+<app-responsive-nav
+  [navClicked]="navClicked"
+  (click)="btnClick()"
+></app-responsive-nav>
