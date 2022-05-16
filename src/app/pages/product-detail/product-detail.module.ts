@@ -7,11 +7,6 @@ import { ProductDetailComponent } from './product-detail.component';
 
 @NgModule({
   declarations: [ProductDetailComponent],
-  imports: [
-    CommonModule,
-    ProductDetailRoutingModule,
-    RouterModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, ProductDetailRoutingModule],
 })
 export class ProductDetailModule {}

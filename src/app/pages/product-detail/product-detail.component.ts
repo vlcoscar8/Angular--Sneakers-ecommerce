@@ -9,17 +9,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  public products: IProduct[] = products as IProduct[];
   public product?: IProduct;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe(async (params) => {
       const productId = params['id'];
-      this.product = this.products.find(
-        (pro) => pro.id === parseInt(productId)
+
+      const response = await fetch(
+        `https://sneakersecommerceapi.vercel.app/product/${productId}`
       );
+
+      this.product = await response.json();
     });
   }
 }
