@@ -7,7 +7,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public path: string = '/';
   public isDesktop?: boolean = false;
   public navClicked?: boolean = false;
   public showFilter?: boolean = false;
@@ -26,14 +25,6 @@ export class HeaderComponent implements OnInit {
     window.innerWidth > 500
       ? (this.isDesktop = true)
       : (this.isDesktop = false);
-  }
-
-  public onClick() {
-    this.router.events.subscribe((e) => {
-      if (e instanceof NavigationEnd) {
-        this.path = e.url.toString();
-      }
-    });
   }
 
   public btnClick() {

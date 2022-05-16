@@ -3,8 +3,32 @@
     <h1>SNEAKERS</h1>
   </div>
   <div class="header__list" *ngIf="isDesktop">
-    <button (click)="setGenre('Woman')" class="header__list--btn">Mujer</button>
-    <button (click)="setGenre('Man')" class="header__list--btn">Hombre</button>
+    <button
+      (click)="setGenre('Woman')"
+      [ngStyle]="{
+        color: genre === 'Woman' ? 'rgb(226, 175, 79)' : 'white',
+        borderBottom:
+          genre === 'Woman'
+            ? '1.3px solid rgb(226, 175, 79)'
+            : '1.3px solid transparent'
+      }"
+      class="header__list--btn"
+    >
+      Mujer
+    </button>
+    <button
+      (click)="setGenre('Man')"
+      [ngStyle]="{
+        color: genre === 'Man' ? 'rgb(226, 175, 79)' : 'white',
+        borderBottom:
+          genre === 'Man'
+            ? '1.3px solid rgb(226, 175, 79)'
+            : '1.3px solid transparent'
+      }"
+      class="header__list--btn"
+    >
+      Hombre
+    </button>
   </div>
   <div
     class="header__navbar"
