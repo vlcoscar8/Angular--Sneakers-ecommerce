@@ -10,15 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
   public products?: IProduct[];
+  public brand?: string;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (e) => {
       const genre = e['genre'];
-      const brand = e['brand'];
+      this.brand = e['brand'];
       const response = await fetch(
-        `https://sneakersecommerceapi.vercel.app//products?genre=${genre}&brand=${brand}`
+        `https://sneakersecommerceapi.vercel.app//products?genre=${genre}&brand=${this.brand}`
       );
       this.products = await response.json();
     });
