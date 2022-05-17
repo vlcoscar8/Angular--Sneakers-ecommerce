@@ -1,5 +1,5 @@
 <div *ngIf="product" class="product" [routerLink]="['/product', product.id]">
   <img [src]="product.img[0]" class="product__img" />
   <h1 class="product__title">{{ product.title }}</h1>
-  <button>Add fav</button>
 </div>
+<button *ngIf="product" (click)="addFav(product)">Add fav</button>

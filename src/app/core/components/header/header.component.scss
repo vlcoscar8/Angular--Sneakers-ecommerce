@@ -1,10 +1,4 @@
-$breakpoint: 1200px;
-
-@mixin desktop {
-  @media (min-width: $breakpoint) {
-    @content;
-  }
-}
+@import "/src/styles.scss";
 
 .header {
   display: flex;

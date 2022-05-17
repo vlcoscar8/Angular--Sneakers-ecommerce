@@ -10,4 +10,10 @@ html {
   text-decoration: none;
 }
 
+$breakpoint: 1200px;
 
+@mixin desktop {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}

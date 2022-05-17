@@ -13,6 +13,10 @@ export class ResponsiveNavComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Get the value emiting the genre to the parentComponent - header
+   * @param text It could be 'Man' or 'Woman'
+   */
   public setGenre(text: string) {
     this.genre.emit(text);
   }
