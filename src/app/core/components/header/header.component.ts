@@ -7,6 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  public path?: string;
   public query?: string;
   public isDesktop?: boolean = false;
   public navClicked?: boolean = false;
@@ -30,6 +31,8 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.query = e.url.split(';')[1];
+        this.path = e.url.split(';')[0];
+        console.log(this.path);
       }
     });
   }

@@ -36,7 +36,13 @@
       'navbar--active': navClicked
     }"
   >
-    <i class="fa-solid fa-cart-shopping header__navbar--cart"></i>
+    <i
+      [routerLink]="['/fav-cart']"
+      [ngStyle]="{
+        color: path === '/fav-cart' ? 'rgb(226, 175, 79)' : 'white'
+      }"
+      class="fa-solid fa-cart-shopping header__navbar--cart"
+    ></i>
     <i class="fa-solid fa-user header__navbar--user"></i>
     <app-nav-btn
       [navClicked]="navClicked"
