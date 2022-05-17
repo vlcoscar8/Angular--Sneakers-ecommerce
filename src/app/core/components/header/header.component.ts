@@ -38,7 +38,8 @@ export class HeaderComponent implements OnInit {
     this.navClicked = !this.navClicked;
   }
 
-  public setGenre(text: string) {
+  public setGenre(text?: string) {
+    console.log(text);
     if (this.genre === text && this.showFilter) {
       this.showFilter = false;
     } else {

@@ -4,16 +4,10 @@
     top: navClicked ? '7rem' : '-10rem'
   }"
 >
-  <button
-    [routerLink]="['/product-list', 'Woman']"
-    class="navbar__btn navbar__btn--woman"
-  >
+  <button (click)="setGenre('Woman')" class="navbar__btn navbar__btn--woman">
     Mujer
   </button>
-  <button
-    [routerLink]="['/product-list', 'Man']"
-    class="navbar__btn navbar__btn--man"
-  >
+  <button (click)="setGenre('Man')" class="navbar__btn navbar__btn--man">
     Hombre
   </button>
 </nav>

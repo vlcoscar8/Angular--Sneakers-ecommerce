@@ -47,6 +47,7 @@
 </header>
 <app-responsive-nav
   [navClicked]="navClicked"
+  (genre)="setGenre($event)"
   (click)="btnClick()"
 ></app-responsive-nav>
 <app-header-filter

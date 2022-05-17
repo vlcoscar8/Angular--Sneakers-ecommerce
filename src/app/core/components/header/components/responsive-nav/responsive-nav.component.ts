@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-responsive-nav',
@@ -8,8 +7,13 @@ import { Input } from '@angular/core';
 })
 export class ResponsiveNavComponent implements OnInit {
   @Input() public navClicked?: boolean;
+  @Output() public genre: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  public setGenre(text: string) {
+    this.genre.emit(text);
+  }
 }
