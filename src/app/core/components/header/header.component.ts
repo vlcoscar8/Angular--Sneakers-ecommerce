@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public setGenre(text?: string) {
-    console.log(text);
     if (this.genre === text && this.showFilter) {
       this.showFilter = false;
     } else {
