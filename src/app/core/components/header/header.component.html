@@ -5,12 +5,8 @@
   <div class="header__list" *ngIf="isDesktop">
     <button
       (click)="setGenre('Woman')"
-      [ngStyle]="{
-        color: query === 'genre=Woman' ? 'rgb(226, 175, 79)' : 'white',
-        borderBottom:
-          query === 'genre=Woman'
-            ? '1.3px solid rgb(226, 175, 79)'
-            : '1.3px solid transparent'
+      [ngClass]="{
+        'btn--active': query === 'genre=Woman'
       }"
       class="header__list--btn"
     >
@@ -18,12 +14,8 @@
     </button>
     <button
       (click)="setGenre('Man')"
-      [ngStyle]="{
-        color: query === 'genre=Man' ? 'rgb(226, 175, 79)' : 'white',
-        borderBottom:
-          query === 'genre=Man'
-            ? '1.3px solid rgb(226, 175, 79)'
-            : '1.3px solid transparent'
+      [ngClass]="{
+        'btn--active': query === 'genre=Man'
       }"
       class="header__list--btn"
     >
