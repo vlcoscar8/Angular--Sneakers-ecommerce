@@ -8,7 +8,6 @@ import { Input } from '@angular/core';
 })
 export class NavBtnComponent implements OnInit {
   @Input() public navClicked?: boolean;
-  @Input() public isDesktop?: boolean;
 
   constructor() {}
 

@@ -38,7 +38,7 @@
     <i class="fa-solid fa-user header__navbar--user"></i>
     <app-nav-btn
       [navClicked]="navClicked"
-      [isDesktop]="isDesktop"
+      *ngIf="!isDesktop"
       (click)="btnClick()"
     ></app-nav-btn>
   </div>
