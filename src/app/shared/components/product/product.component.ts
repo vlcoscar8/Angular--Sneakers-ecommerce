@@ -13,6 +13,10 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
+/**
+ * Set the product on the list of products added to cart
+ * @param obj The product object choosed by the user
+ */
   public addFav(obj: IProduct) {
     this.productCartService.setCartProduct(obj);
   }

@@ -10,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class ProductCartComponent implements OnInit {
   public cartProducts?: IProduct[];
 
-  constructor(private cartcartService: ProductCartService) {}
+  constructor(private productCartService: ProductCartService) {}
 
+  /**
+   * Get the cart products added by the user when click on add to cart button
+   */
   ngOnInit(): void {
-    this.cartProducts = this.cartcartService.getCartProducts();
+    this.cartProducts = this.productCartService.getCartProducts();
   }
 }

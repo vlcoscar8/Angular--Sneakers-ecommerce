@@ -18,13 +18,16 @@ export class ProductListComponent implements OnInit {
     private productsService: ProductsService
   ) {}
 
+  /**
+   * Get the query params from the route ("genre" & "brand")
+   * then get the products list filtering by the querys
+   */
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (e) => {
       this.genre = e['genre'];
       e['brand'] ? (this.brand = e['brand']) : (this.brand = '');
     });
 
-    console.log(this.brand, this.genre);
     this.productsService
       .getProducts(this.genre, this.brand)
       .subscribe((products) => (this.products = products));
