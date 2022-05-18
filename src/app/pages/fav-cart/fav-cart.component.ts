@@ -1,3 +1,5 @@
+import { FavcartService } from './../../core/services/favcart.service';
+import { IProduct } from './../../shared/components/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fav-cart.component.scss'],
 })
 export class FavCartComponent implements OnInit {
-  constructor() {}
+  public favProducts?: IProduct[];
 
-  ngOnInit(): void {}
+  constructor(private favcartService: FavcartService) {}
+
+  ngOnInit(): void {
+    this.favProducts = this.favcartService.getFavProducts();
+    console.log(this.favProducts);
+  }
 }
