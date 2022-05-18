@@ -1,4 +1,4 @@
-import { FavcartService } from './services/favcart.service';
+import { ProductCartService } from './services/product-cart/productcart.service';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,7 @@ import { HeaderFilterComponent } from './components/header/components/header-fil
     NavBtnComponent,
     HeaderFilterComponent,
   ],
-  providers: [FavcartService],
+  providers: [ProductCartService],
   imports: [CommonModule, RouterModule],
   exports: [FooterComponent, HeaderComponent],
 })

@@ -35,8 +35,8 @@
       }"
       class="fa-solid fa-cart-shopping header__navbar--cart"
     ></i>
-    <div class="header__navbar--counter" *ngIf="favProducts">
-      <p *ngIf="favProducts.length > 0">{{ favProducts?.length }}</p>
+    <div class="header__navbar--counter" *ngIf="cartProducts">
+      <p *ngIf="cartProducts.length > 0">{{ cartProducts?.length }}</p>
     </div>
     <i class="fa-solid fa-user header__navbar--user"></i>
     <app-nav-btn

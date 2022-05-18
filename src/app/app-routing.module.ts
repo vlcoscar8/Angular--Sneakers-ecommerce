@@ -26,8 +26,8 @@ const routes: Routes = [
   {
     path: 'fav-cart',
     loadChildren: () =>
-      import('src/app/pages/fav-cart/fav-cart.module').then(
-        (m) => m.FavCartModule
+      import('src/app/pages/product-cart/product-cart.module').then(
+        (m) => m.ProductCartModule
       ),
   },
   {

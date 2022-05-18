@@ -1,4 +1,4 @@
-import { FavcartService } from './../../../core/services/favcart.service';
+import { ProductCartService } from '../../../core/services/product-cart/productcart.service';
 import { IProduct } from './model/product.model';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
@@ -9,12 +9,12 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @Input() public product?: IProduct;
-  constructor(private favCartService: FavcartService) {}
+  constructor(private productCartService: ProductCartService) {}
 
   ngOnInit(): void {}
 
   public addFav(obj: IProduct) {
-    this.favCartService.setFavProduct(obj);
+    this.productCartService.setCartProduct(obj);
   }
 
   ngOnDestroy(): void {}
