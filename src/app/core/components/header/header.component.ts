@@ -1,3 +1,5 @@
+import { FavcartService } from './../../services/favcart.service';
+import { IProduct } from './../../../shared/components/product/model/product.model';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 
@@ -13,8 +15,9 @@ export class HeaderComponent implements OnInit {
   public navClicked?: boolean = false;
   public showFilter?: boolean = false;
   public genre?: string;
+  public favProducts?: IProduct[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private favcartService: FavcartService) {}
 
   @HostListener('window:resize')
 
@@ -28,8 +31,9 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * First toggle the variable isDesktop to true or false depending on the windowdHeight
-   * Second set the query and the path listening the router path
+   * First, toggle the variable isDesktop to true or false depending on the windowdHeight
+   * Second, set the query and the path listening the router path
+   * Third, get the products added by the user to favourites list
    */
   ngOnInit(): void {
     window.innerWidth > 500
@@ -42,6 +46,8 @@ export class HeaderComponent implements OnInit {
         this.path = e.url.split(';')[0];
       }
     });
+
+    this.favProducts = this.favcartService.getFavProducts();
   }
 
   /**

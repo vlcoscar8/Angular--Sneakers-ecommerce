@@ -14,6 +14,5 @@ export class FavCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.favProducts = this.favcartService.getFavProducts();
-    console.log(this.favProducts);
   }
 }
