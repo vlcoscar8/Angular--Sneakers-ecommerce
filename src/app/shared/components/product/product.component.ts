@@ -1,5 +1,5 @@
 import { ProductCartService } from '../../../core/services/product-cart/productcart.service';
-import { IProduct } from './model/product.model';
+import { IProduct } from '../../../core/services/product/model/product.model';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({

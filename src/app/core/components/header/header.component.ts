@@ -1,5 +1,5 @@
 import { ProductCartService } from '../../services/product-cart/productcart.service';
-import { IProduct } from './../../../shared/components/product/model/product.model';
+import { IProduct } from '../../services/product/model/product.model';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 

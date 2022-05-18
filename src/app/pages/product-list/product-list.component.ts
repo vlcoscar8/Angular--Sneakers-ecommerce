@@ -1,6 +1,6 @@
+import { ProductsService } from './../../core/services/product/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { products } from './../../shared/components/product/config/product.config';
-import { IProduct } from './../../shared/components/product/model/product.model';
+import { IProduct } from '../../core/services/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,18 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
   public products?: IProduct[];
   public brand?: string;
+  public genre?: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (e) => {
-      const genre = e['genre'];
+      this.genre = e['genre'];
       e['brand'] ? (this.brand = e['brand']) : (this.brand = '');
-
-      const response = await fetch(
-        `https://sneakersecommerceapi.vercel.app//products?genre=${genre}&brand=${this.brand}`
-      );
-      this.products = await response.json();
     });
+
+    console.log(this.brand, this.genre);
+    this.productsService
+      .getProducts(this.genre, this.brand)
+      .subscribe((products) => (this.products = products));
   }
 }
