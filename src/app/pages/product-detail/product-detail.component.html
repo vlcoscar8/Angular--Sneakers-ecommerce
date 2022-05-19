@@ -1,6 +1,6 @@
 <div class="arrow" [routerLink]="['/product-list', { genre: product?.genre }]">
   <i class="fa-solid fa-arrow-left-long arrow__icon"></i>
-  <h2>Product list</h2>
+  <h2>Lista de productos</h2>
 </div>
 <div *ngIf="product" class="product">
   <div class="product__gallery">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="product__info--desc">
-      <h3>Description:</h3>
+      <h3>Descripción:</h3>
       <p>{{ product.description }}</p>
     </div>
     <div class="product__info--button">
