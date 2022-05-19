@@ -3,9 +3,12 @@
     Lista de productos de
     {{ brand ? brand : genre === "Man" ? "hombre" : "mujer" }}:
   </h1>
-  <div class="gallery__container">
+  <div class="gallery__filters">
+    <input class="filter__find" type="text" [(ngModel)]="filterValue" />
+  </div>
+  <div class="gallery__container" *ngIf="products">
     <app-product
-      *ngFor="let product of products | async"
+      *ngFor="let product of products | filter: filterValue"
       [product]="product"
     ></app-product>
   </div>

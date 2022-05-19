@@ -10,9 +10,10 @@ import { switchMap, Observable } from 'rxjs';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  public products?: Observable<IProduct[]>;
+  public products?: IProduct[];
   public brand?: string;
   public genre?: string;
+  public filterValue: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,13 +25,17 @@ export class ProductListComponent implements OnInit {
    * then get the products list filtering by the querys usign the pipe with switchmap to concatenate asyncronus methods
    */
   ngOnInit(): void {
-    this.products = this.activatedRoute.params.pipe(
-      switchMap((e) => {
-        this.genre = e['genre'];
-        e['brand'] ? (this.brand = e['brand']) : (this.brand = '');
+    this.activatedRoute.params
+      .pipe(
+        switchMap((params) => {
+          this.genre = params['genre'];
+          params['brand'] ? (this.brand = params['brand']) : (this.brand = '');
 
-        return this.productsService.getProducts(this.genre, this.brand);
-      })
-    );
+          return this.productsService.getProducts(this.genre, this.brand);
+        })
+      )
+      .subscribe((products) => {
+        this.products = products;
+      });
   }
 }
