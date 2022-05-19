@@ -1,4 +1,4 @@
-import { switchMap, Observable } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { ProductCartService } from './../../core/services/product-cart/productcart.service';
 import { ProductsService } from './../../core/services/product/products.service';
 import { IProduct } from '../../core/services/product/model/product.model';
