@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ProductsService } from './services/product/products.service';
 import { ProductCartService } from './services/product-cart/productcart.service';
 import { RouterModule } from '@angular/router';
@@ -18,7 +19,7 @@ import { HeaderFilterComponent } from './components/header/components/header-fil
     HeaderFilterComponent,
   ],
   providers: [ProductCartService, ProductsService],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [FooterComponent, HeaderComponent],
 })
 export class CoreModule {}

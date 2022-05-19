@@ -1,12 +1,42 @@
 <p>Product detail:</p>
-<div *ngIf="product">
-  <h1>{{ product.title }}</h1>
-  <h2>{{ product.brand }}</h2>
-  <h2>{{ product.genre }}</h2>
-  <div>
-    <img [src]="product.img[0]" />
-    <img [src]="product.img[1]" />
-    <img [src]="product.img[2]" />
+<div *ngIf="product" class="product">
+  <div class="product__gallery">
+    <div class="product__gallery--main">
+      <img [src]="mainImg" />
+    </div>
+    <div class="product__gallery--secondary">
+      <img
+        *ngFor="let img of secondaryImg"
+        [src]="img"
+        (click)="swapMain(img)"
+      />
+    </div>
   </div>
-  <p>{{ product.description }}</p>
+  <div class="product__info">
+    <div class="product__info--title">
+      <h1>{{ product.title }}</h1>
+    </div>
+    <div class="product__info--extra">
+      <h2>{{ product.brand }}</h2>
+      <h2>{{ product.genre }}</h2>
+    </div>
+    <div class="product__info--size">
+      <div *ngFor="let size of sizes" class="size">
+        <h2 class="size__content">{{ size }}</h2>
+      </div>
+    </div>
+    <div class="product__info--desc">
+      <h3>Description:</h3>
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="product__info--button">
+      <select title="quantity" class="select">
+        <option selected>1</option>
+        <option *ngFor="let unit of quantity">{{ unit }}</option>
+      </select>
+      <button (click)="addFav(product)" type="submit" class="btn">
+        Añadir a la cesta
+      </button>
+    </div>
+  </div>
 </div>
