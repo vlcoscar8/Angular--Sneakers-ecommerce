@@ -97,6 +97,11 @@
           border: 1px solid rgb(134, 92, 14);
           transition: all 0.3s ease;
         }
+
+        &--active {
+          background-color: rgb(202, 156, 62);
+          border: 1px solid rgb(64, 45, 10);
+        }
       }
     }
 
@@ -159,6 +164,24 @@
           width: 5rem;
         }
       }
+    }
+  }
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  margin: 2rem 2rem 0 2rem;
+  width: 15rem;
+  gap: 1rem;
+
+  &__icon {
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(188, 140, 51);
+      transition: all 0.3s ease;
     }
   }
 }

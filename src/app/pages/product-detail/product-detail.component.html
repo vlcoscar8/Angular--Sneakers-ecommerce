@@ -1,4 +1,7 @@
-<p>Product detail:</p>
+<div class="arrow" [routerLink]="['/product-list', { genre: product?.genre }]">
+  <i class="fa-solid fa-arrow-left-long arrow__icon"></i>
+  <h2>Product list</h2>
+</div>
 <div *ngIf="product" class="product">
   <div class="product__gallery">
     <div class="product__gallery--main">
@@ -20,9 +23,20 @@
       <h2>{{ product.brand }}</h2>
       <h2>{{ product.genre }}</h2>
     </div>
+    <h2>Tallas:</h2>
+    <h3 *ngIf="sizeSelected === ''">Selecciona una talla!</h3>
     <div class="product__info--size">
-      <div *ngFor="let size of sizes" class="size">
-        <h2 class="size__content">{{ size }}</h2>
+      <div
+        *ngFor="let size of sizes"
+        class="size"
+        (click)="selectSize(size)"
+        [ngClass]="{
+          'size--active': sizeSelected === size
+        }"
+      >
+        <h2 class="content">
+          {{ size }}
+        </h2>
       </div>
     </div>
     <div class="product__info--desc">
@@ -31,10 +45,12 @@
     </div>
     <div class="product__info--button">
       <select title="quantity" class="select">
-        <option selected>1</option>
-        <option *ngFor="let unit of quantity">{{ unit }}</option>
+        <option selected (click)="selectQuant(quantSelected)">1</option>
+        <option *ngFor="let unit of quantity" (click)="selectQuant(unit)">
+          {{ unit }}
+        </option>
       </select>
-      <button (click)="addFav(product)" type="submit" class="btn">
+      <button (click)="addCart(product)" type="submit" class="btn">
         Añadir a la cesta
       </button>
     </div>

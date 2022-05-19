@@ -22,8 +22,6 @@ export class ProductCartService {
    * @param product The product object choosed by the user
    */
   public setCartProduct(product: IProduct) {
-    this.cartProducts?.includes(product)
-      ? this.cartProducts.splice(this.cartProducts.indexOf(product), 1)
-      : this.cartProducts?.push(product);
+    this.cartProducts?.push(product);
   }
 }

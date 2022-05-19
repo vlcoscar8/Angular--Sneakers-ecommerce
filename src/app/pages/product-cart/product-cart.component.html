@@ -2,5 +2,7 @@
   <div *ngFor="let product of cartProducts">
     <h1>{{ product.title }}</h1>
     <img [src]="product.img[0]" />
+    <h2>{{ product.sizeSelected }}</h2>
+    <h2>{{ product.quantSelected }}</h2>
   </div>
 </div>

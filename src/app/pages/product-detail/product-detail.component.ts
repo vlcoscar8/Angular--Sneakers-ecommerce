@@ -16,6 +16,8 @@ export class ProductDetailComponent implements OnInit {
   public secondaryImg?: string[] = [];
   public sizes?: string[] = [];
   public quantity: number[] = [];
+  public sizeSelected?: string;
+  public quantSelected: number = 1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -68,7 +70,25 @@ export class ProductDetailComponent implements OnInit {
    * Set the product on the list of products added to cart
    * @param obj The product object choosed by the user
    */
-  public addFav(obj: IProduct) {
-    this.productCartService.setCartProduct(obj);
+  public addCart(obj: IProduct) {
+    this.sizeSelected === undefined
+      ? (this.sizeSelected = '')
+      : (obj.sizeSelected = this.sizeSelected);
+
+    obj.quantSelected = this.quantSelected;
+
+    console.log(obj);
+
+    if (this.sizeSelected != '') {
+      this.productCartService.setCartProduct(obj);
+    }
+  }
+
+  public selectSize(size: string) {
+    this.sizeSelected = size;
+  }
+
+  public selectQuant(unit: number) {
+    this.quantSelected = unit;
   }
 }
