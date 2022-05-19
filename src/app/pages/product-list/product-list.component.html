@@ -2,7 +2,7 @@
   <h1 class="gallery__title">Lista de productos de {{ brand }}:</h1>
   <div class="gallery__container">
     <app-product
-      *ngFor="let product of products"
+      *ngFor="let product of products | async"
       [product]="product"
     ></app-product>
   </div>
