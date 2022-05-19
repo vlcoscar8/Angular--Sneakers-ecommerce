@@ -1,3 +1,4 @@
+import { switchMap, Observable } from 'rxjs';
 import { ProductCartService } from './../../core/services/product-cart/productcart.service';
 import { ProductsService } from './../../core/services/product/products.service';
 import { IProduct } from '../../core/services/product/model/product.model';
@@ -11,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   public product?: IProduct;
-  public productId?: number;
   public mainImg?: string;
   public secondaryImg?: string[] = [];
   public sizes?: string[] = [];
@@ -28,30 +28,27 @@ export class ProductDetailComponent implements OnInit {
   /**
    * Get the product id from the params listening the route
    * then get the product using the service productService calling the api
+   * and set different variables to iterate in the html such as the images, the sizes and the quantity
    */
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(async (params) => {
-      this.productId = params['id'];
-    });
+    this.activatedRoute.params
+      .pipe(
+        switchMap((params) => {
+          const productId = params['id'];
+          return this.productsService.getProductById(productId);
+        })
+      )
+      .subscribe((product) => {
+        this.product = product;
+        this.mainImg = this.product?.img[0];
+        this.secondaryImg?.push(this.product.img[1]);
+        this.secondaryImg?.push(this.product.img[2]);
+        this.sizes = product.sizes.split(', ');
 
-    /**
-     * Set the product from the api
-     * Set the main image of the gallery from the first image of the api
-     * Set the secondary list images
-     * Set the array of sizes
-     * Set the quantity products on stock
-     */
-    this.productsService.getProductById(this.productId).subscribe((product) => {
-      this.product = product;
-      this.mainImg = this.product?.img[0];
-      this.secondaryImg?.push(this.product.img[1]);
-      this.secondaryImg?.push(this.product.img[2]);
-      this.sizes = product.sizes.split(', ');
-
-      for (let i = 1; i <= product.units; i++) {
-        this.quantity.push(i);
-      }
-    });
+        for (let i = 1; i <= product.units; i++) {
+          this.quantity.push(i);
+        }
+      });
   }
 
   /**
