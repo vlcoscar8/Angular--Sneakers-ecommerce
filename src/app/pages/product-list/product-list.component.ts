@@ -26,10 +26,10 @@ export class ProductListComponent implements OnInit {
     this.activatedRoute.params.subscribe(async (e) => {
       this.genre = e['genre'];
       e['brand'] ? (this.brand = e['brand']) : (this.brand = '');
-    });
 
-    this.productsService
-      .getProducts(this.genre, this.brand)
-      .subscribe((products) => (this.products = products));
+      this.productsService
+        .getProducts(this.genre, this.brand)
+        .subscribe((products) => (this.products = products));
+    });
   }
 }

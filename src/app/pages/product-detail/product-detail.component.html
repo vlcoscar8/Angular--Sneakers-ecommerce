@@ -40,12 +40,12 @@
       </div>
     </div>
     <div class="product__info--desc">
-      <h3>Descripción:</h3>
+      <h3>Description:</h3>
       <p>{{ product.description }}</p>
     </div>
     <div class="product__info--button">
       <select title="quantity" class="select">
-        <option selected (click)="selectQuant(quantSelected)">1</option>
+        <option selected (click)="selectQuant(1)">1</option>
         <option *ngFor="let unit of quantity" (click)="selectQuant(unit)">
           {{ unit }}
         </option>

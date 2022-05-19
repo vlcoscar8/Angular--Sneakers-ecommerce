@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
   public sizes?: string[] = [];
   public quantity: number[] = [];
   public sizeSelected?: string;
-  public quantSelected: number = 1;
+  public quantSelected?: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -48,7 +48,7 @@ export class ProductDetailComponent implements OnInit {
       this.secondaryImg?.push(this.product.img[2]);
       this.sizes = product.sizes.split(', ');
 
-      for (let i = 2; i <= product.units; i++) {
+      for (let i = 1; i <= product.units; i++) {
         this.quantity.push(i);
       }
     });
@@ -75,9 +75,9 @@ export class ProductDetailComponent implements OnInit {
       ? (this.sizeSelected = '')
       : (obj.sizeSelected = this.sizeSelected);
 
-    obj.quantSelected = this.quantSelected;
-
-    console.log(obj);
+    if (this.quantSelected) {
+      obj.quantSelected = this.quantSelected;
+    }
 
     if (this.sizeSelected != '') {
       this.productCartService.setCartProduct(obj);
