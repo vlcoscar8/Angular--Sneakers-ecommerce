@@ -1,5 +1,8 @@
 <div class="gallery">
-  <h1 class="gallery__title">Lista de productos de {{ brand }}:</h1>
+  <h1 class="gallery__title">
+    Lista de productos de
+    {{ brand ? brand : genre === "Man" ? "hombre" : "mujer" }}:
+  </h1>
   <div class="gallery__container">
     <app-product
       *ngFor="let product of products | async"
