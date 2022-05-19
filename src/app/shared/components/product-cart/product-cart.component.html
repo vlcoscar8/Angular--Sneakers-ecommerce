@@ -5,16 +5,15 @@
   <div class="card__info">
     <div class="info__main">
       <h1 class="info__main--title">{{ product.title }}</h1>
-      <h1 class="info__main--price">{{ product.price }}</h1>
-    </div>
-    <div class="info__extra">
-      <h1 class="info__extra--brand">{{ product.brand }}</h1>
-      <h1 class="info__extra--genre">{{ product.genre }}</h1>
       <i class="fa-solid fa-trash-can remove"></i>
     </div>
+    <div class="info__extra">
+      <h1 class="info__extra--info">
+        {{ product.brand }} - {{ product.genre === "Man" ? "Hombre" : "Mujer" }}
+      </h1>
+      <h1 class="info__extra--price">Precio: {{ product.price }} €</h1>
+    </div>
     <h2>Talla: {{ product.sizeSelected }}</h2>
-    <select title="quantity" class="select">
-      <option selected>{{ product.quantSelected }}</option>
-    </select>
+    <h2>Cantidad: {{ product.quantSelected }}</h2>
   </div>
 </div>
