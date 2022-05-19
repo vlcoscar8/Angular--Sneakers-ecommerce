@@ -1,10 +1,16 @@
 <div class="gallery">
   <h1 class="gallery__title">
-    Lista de productos de
+    Lista de productos
     {{ brand ? brand : genre === "Man" ? "hombre" : "mujer" }}:
   </h1>
   <div class="gallery__filters">
-    <input class="filter__find" type="text" [(ngModel)]="filterValue" />
+    <i class="fa-solid fa-magnifying-glass find"></i>
+    <input
+      class="filter__find"
+      type="text"
+      placeholder="search"
+      [(ngModel)]="filterValue"
+    />
   </div>
   <div class="gallery__container" *ngIf="products">
     <app-product
