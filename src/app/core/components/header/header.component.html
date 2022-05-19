@@ -29,7 +29,7 @@
     }"
   >
     <i
-      
+      (click)="openCart()"
       [ngStyle]="{
         color: path === '/fav-cart' ? 'rgb(226, 175, 79)' : 'white'
       }"
@@ -56,4 +56,9 @@
   *ngIf="showFilter"
   (click)="closeFilter()"
 ></app-header-filter>
-<app-cart-nav></app-cart-nav>
+<app-cart-nav
+  [ngStyle]="{
+    transform: cartOpened ? 'translateX(0)' : 'translateX(50rem)'
+  }"
+  class="cart__nav"
+></app-cart-nav>

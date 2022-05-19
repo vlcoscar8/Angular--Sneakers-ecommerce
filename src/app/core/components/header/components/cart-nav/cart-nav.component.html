@@ -1,4 +1,5 @@
-<div class="product-cart">
+<div class="product-cart" *ngIf="productsCart">
+  <h1 class="product-cart__empty" *ngIf="productsCart.length < 1">Carrito de la compra vacio!</h1>
   <app-product-cart
     *ngFor="let product of productsCart"
     [product]="product"
