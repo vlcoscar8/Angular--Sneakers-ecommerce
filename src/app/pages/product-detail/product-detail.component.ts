@@ -81,6 +81,7 @@ export class ProductDetailComponent implements OnInit {
 
   /**
    * Set the product on the list of products added to cart
+   * get the size selected and the quantity of products
    * @param obj The product object choosed by the user
    */
   public addCart(obj: IProduct) {
