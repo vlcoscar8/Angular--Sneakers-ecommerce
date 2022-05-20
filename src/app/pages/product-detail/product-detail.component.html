@@ -43,16 +43,19 @@
       <h3>Descripción:</h3>
       <p>{{ product.description }}</p>
     </div>
-    <div class="product__info--button">
-      <select title="quantity" class="select">
-        <option selected (click)="selectQuant(1)">1</option>
-        <option *ngFor="let unit of quantity" (click)="selectQuant(unit)">
+    <form
+      class="product__info--button"
+      *ngIf="quantForm"
+      [formGroup]="quantForm"
+      (submit)="addCart(product)"
+    >
+      <select title="quantity" class="select" formControlName="quantSelected">
+        <option selected>1</option>
+        <option *ngFor="let unit of quantity">
           {{ unit }}
         </option>
       </select>
-      <button (click)="addCart(product)" type="submit" class="btn">
-        Añadir a la cesta
-      </button>
-    </div>
+      <button type="submit" class="btn">Añadir a la cesta</button>
+    </form>
   </div>
 </div>

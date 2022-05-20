@@ -4,6 +4,12 @@ import { ProductsService } from './../../core/services/product/products.service'
 import { IProduct } from '../../core/services/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,12 +24,22 @@ export class ProductDetailComponent implements OnInit {
   public quantity: number[] = [];
   public sizeSelected?: string;
   public quantSelected?: number;
+  public quantForm?: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
-    private productCartService: ProductCartService
-  ) {}
+    private productCartService: ProductCartService,
+    private fb: FormBuilder
+  ) {
+    this.quantForm = this.fb.group({
+      quantSelected: new FormControl(1, [
+        Validators.min(1),
+        Validators.max(10),
+        Validators.required,
+      ]),
+    });
+  }
 
   /**
    * Get the product id from the params listening the route
@@ -72,9 +88,7 @@ export class ProductDetailComponent implements OnInit {
       ? (this.sizeSelected = '')
       : (obj.sizeSelected = this.sizeSelected);
 
-    if (this.quantSelected) {
-      obj.quantSelected = this.quantSelected;
-    }
+    obj.quantSelected = this.quantForm?.value['quantSelected'];
 
     if (this.sizeSelected != '') {
       this.productCartService.setCartProduct(obj);
