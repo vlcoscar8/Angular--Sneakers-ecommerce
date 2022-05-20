@@ -12,6 +12,8 @@
   @include desktop {
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
+    margin-left: 5rem;
   }
 
   &__gallery {
@@ -23,7 +25,7 @@
     gap: 2rem;
 
     @include desktop {
-      width: 70vw;
+      width: 55vw;
     }
 
     &--main {
@@ -66,6 +68,10 @@
 
     @include desktop {
       align-items: flex-start;
+    }
+
+    .size-filter {
+      color: red;
     }
 
     &--extra {

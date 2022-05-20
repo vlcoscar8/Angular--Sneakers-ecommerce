@@ -24,7 +24,9 @@
       <h2>{{ product.genre }}</h2>
     </div>
     <h2>Tallas:</h2>
-    <h3 *ngIf="sizeSelected === ''">Selecciona una talla!</h3>
+    <h3 *ngIf="sizeSelected === ''" class="size-filter">
+      Selecciona una talla!
+    </h3>
     <div class="product__info--size">
       <div
         *ngFor="let size of sizes"
@@ -50,7 +52,6 @@
       (submit)="addCart(product)"
     >
       <select title="quantity" class="select" formControlName="quantSelected">
-        <option selected>1</option>
         <option *ngFor="let unit of quantity">
           {{ unit }}
         </option>

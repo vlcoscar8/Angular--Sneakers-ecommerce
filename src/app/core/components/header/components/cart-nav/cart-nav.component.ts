@@ -14,5 +14,6 @@ export class CartNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsCart = this.productCartService.getCartProducts();
+    console.log(this.productsCart);
   }
 }

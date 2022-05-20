@@ -11,7 +11,7 @@ html {
   text-decoration: none;
 }
 
-$breakpoint: 1200px;
+$breakpoint: 800px;
 
 @mixin desktop {
   @media (min-width: $breakpoint) {

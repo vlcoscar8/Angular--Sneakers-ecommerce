@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
   public sizeSelected?: string;
   public quantSelected?: number;
   public quantForm?: FormGroup;
+  public btnClicked: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -93,6 +94,7 @@ export class ProductDetailComponent implements OnInit {
 
     if (this.sizeSelected != '') {
       this.productCartService.setCartProduct(obj);
+      this.sizeSelected = undefined;
     }
   }
 
