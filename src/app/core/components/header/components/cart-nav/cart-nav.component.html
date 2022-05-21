@@ -6,5 +6,8 @@
     *ngFor="let product of productsCart"
     [product]="product"
   ></app-product-cart>
-  <button [routerLink]="['/fav-cart']">Ver bolsa</button>
+  <button *ngIf="productsCart.length > 0" [routerLink]="['/fav-cart']">
+    Ver bolsa
+  </button>
+  <button *ngIf="!isDesktop">Comprar</button>
 </div>

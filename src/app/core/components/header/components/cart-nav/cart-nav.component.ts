@@ -1,5 +1,5 @@
 import { ProductCartService } from './../../../../services/product-cart/productcart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/services/product/model/product.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { IProduct } from 'src/app/core/services/product/model/product.model';
 })
 export class CartNavComponent implements OnInit {
   public productsCart?: Object[];
+  @Input() public isDesktop?: boolean;
 
   constructor(private productCartService: ProductCartService) {}
 
