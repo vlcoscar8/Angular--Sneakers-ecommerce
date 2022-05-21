@@ -1,5 +1,4 @@
 import { ProductCartService } from '../../core/services/product-cart/productcart.service';
-import { IProduct } from '../../core/services/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-cart.component.scss'],
 })
 export class ProductCartComponent implements OnInit {
-  public cartProducts?: IProduct[];
+  public cartProducts?: Object[];
 
   constructor(private productCartService: ProductCartService) {}
 

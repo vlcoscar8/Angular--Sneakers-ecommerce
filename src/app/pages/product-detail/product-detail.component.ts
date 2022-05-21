@@ -88,21 +88,21 @@ export class ProductDetailComponent implements OnInit {
   public addCart(obj: IProduct) {
     this.sizeSelected === undefined
       ? (this.sizeSelected = '')
-      : (obj.sizeSelected = this.sizeSelected);
+      : this.sizeSelected;
 
-    obj.quantSelected = this.quantForm?.value['quantSelected'];
+    this.quantSelected = parseInt(this.quantForm?.value['quantSelected']);
 
-    if (this.sizeSelected != '') {
-      this.productCartService.setCartProduct(obj);
+    if (this.sizeSelected != '' && this.quantSelected) {
+      this.productCartService.setCartProduct(
+        obj,
+        this.sizeSelected,
+        this.quantSelected
+      );
       this.sizeSelected = undefined;
     }
   }
 
   public selectSize(size: string) {
     this.sizeSelected = size;
-  }
-
-  public selectQuant(unit: number) {
-    this.quantSelected = unit;
   }
 }

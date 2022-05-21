@@ -8,7 +8,7 @@ import { IProduct } from 'src/app/core/services/product/model/product.model';
   styleUrls: ['./cart-nav.component.scss'],
 })
 export class CartNavComponent implements OnInit {
-  public productsCart?: IProduct[];
+  public productsCart?: Object[];
 
   constructor(private productCartService: ProductCartService) {}
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductCartService {
-  public cartProducts?: IProduct[] = [];
+  public cartProducts: object[] = [];
 
   constructor() {}
 
@@ -21,7 +21,14 @@ export class ProductCartService {
    * Set the product on the product cart list
    * @param product The product object choosed by the user
    */
-  public setCartProduct(product: IProduct) {
-    this.cartProducts?.push(product);
+  public setCartProduct(product: IProduct, size: string, units: number) {
+    const productCartObject = {
+      product: product,
+      size: size,
+      units: units,
+    };
+    this.cartProducts.push(productCartObject);
+
+    console.log(this.cartProducts);
   }
 }
