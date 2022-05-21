@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   public navClicked?: boolean = false;
   public showFilter?: boolean = false;
   public genre?: string;
-  public cartProducts?: IProduct[];
+  public cartProducts?: Object[];
   public cartOpened: boolean = false;
 
   constructor(
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    // this.cartProducts = this.productCartService.getCartProducts();
+    this.cartProducts = this.productCartService.getCartProducts();
   }
 
   /**

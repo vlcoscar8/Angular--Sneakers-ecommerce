@@ -1,19 +1,20 @@
 <div class="card" *ngIf="product">
   <div class="card__img">
-    <img [src]="product.img[0]" />
+    <img [src]="product.product.img[0]" />
   </div>
   <div class="card__info">
     <div class="info__main">
-      <h1 class="info__main--title">{{ product.title }}</h1>
-      <i class="fa-solid fa-xmark remove"></i>
+      <h1 class="info__main--title">{{ product.product.title }}</h1>
+      <i class="fa-solid fa-xmark remove" (click)="removeProduct(product)"></i>
     </div>
     <div class="info__extra">
       <h1 class="info__extra--info">
-        {{ product.brand }} - {{ product.genre === "Man" ? "Hombre" : "Mujer" }}
+        {{ product.product.brand }} -
+        {{ product.product.genre === "Man" ? "Hombre" : "Mujer" }}
       </h1>
-      <h1 class="info__extra--price">Precio: {{ product.price }} €</h1>
+      <h1 class="info__extra--price">Precio: {{ product.product.price }} €</h1>
     </div>
-    <h2>Talla: {{ product.sizeSelected }}</h2>
-    <h2>Cantidad: {{ product.quantSelected }}</h2>
+    <h2>Talla: {{ product.size }}</h2>
+    <h2>Cantidad: {{ product.units }}</h2>
   </div>
 </div>

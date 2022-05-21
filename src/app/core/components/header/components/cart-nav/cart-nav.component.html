@@ -2,9 +2,9 @@
   <h1 class="product-cart__empty" *ngIf="productsCart.length < 1">
     Carrito de la compra vacio!
   </h1>
-  <!-- <app-product-cart
+  <app-product-cart
     *ngFor="let product of productsCart"
     [product]="product"
-  ></app-product-cart> -->
+  ></app-product-cart>
   <button [routerLink]="['/fav-cart']">Ver bolsa</button>
 </div>

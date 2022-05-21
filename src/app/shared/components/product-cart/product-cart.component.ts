@@ -1,3 +1,4 @@
+import { ProductCartService } from './../../../core/services/product-cart/productcart.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/services/product/model/product.model';
 
@@ -7,8 +8,12 @@ import { IProduct } from 'src/app/core/services/product/model/product.model';
   styleUrls: ['./product-cart.component.scss'],
 })
 export class ProductCartComponent implements OnInit {
-  @Input() public product?: IProduct;
-  constructor() {}
+  @Input() public product?: any;
+  constructor(private productCartService: ProductCartService) {}
 
   ngOnInit(): void {}
+
+  public removeProduct(product: Object) {
+    this.productCartService.removeCartProduct(product);
+  }
 }
