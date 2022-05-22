@@ -1,1 +1,36 @@
-<p>user-nav works!</p>
+<div class="user">
+  <div *ngIf="buttonClicked === ''" class="user__buttons">
+    <button #loginbtn (click)="openForm(loginbtn)" class="user__buttons--login">
+      Iniciar sesión
+    </button>
+    <button
+      #signupbtn
+      (click)="openForm(signupbtn)"
+      class="user__buttons--signup"
+    >
+      Registrarse
+    </button>
+  </div>
+  <div *ngIf="buttonClicked === 'Registrarse'" class="user__form">
+    <i class="fa-solid fa-arrow-left-long arrow" (click)="back()"></i>
+    <form class="user__form--form">
+      <label>Nombre de usuario</label>
+      <input type="text" placeholder="nombre de usuario" />
+      <label>E-mail</label>
+      <input type="text" placeholder="emailejemplo@email.com" />
+      <label>Constraseña</label>
+      <input type="password" placeholder="1234Abcd" />
+      <button type="submit" class="signupbtn">Registrarse</button>
+    </form>
+  </div>
+  <div *ngIf="buttonClicked === 'Iniciar sesión'" class="user__form">
+    <i class="fa-solid fa-arrow-left-long arrow" (click)="back()"></i>
+    <form class="user__form--form">
+      <label>E-mail</label>
+      <input type="text" placeholder="nombre de usuario" />
+      <label>Constraseña</label>
+      <input type="password" placeholder="1234Abcd" />
+      <button type="submit" class="loginbtn">Iniciar sesión</button>
+    </form>
+  </div>
+</div>

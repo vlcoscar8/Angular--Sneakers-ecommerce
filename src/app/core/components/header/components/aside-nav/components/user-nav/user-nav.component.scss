@@ -1,0 +1,83 @@
+@import "/src/styles.scss";
+
+.user {
+  width: 95vw;
+
+  @include desktop {
+    width: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    &--login {
+      background-color: black;
+      color: white;
+    }
+
+    &--signup {
+      background-color: rgb(226, 175, 79);
+      color: white;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 93%;
+
+    &--form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+
+      label {
+        font-size: 1.5rem;
+      }
+
+      input {
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 0.3rem;
+        height: 3rem;
+        padding: 0 1rem;
+      }
+
+      .loginbtn {
+        margin-top: 3rem;
+        background-color: rgb(0, 0, 0);
+        align-self: center;
+      }
+
+      .signupbtn {
+        margin-top: 3rem;
+        background-color: rgb(226, 175, 79);
+        align-self: center;
+      }
+    }
+  }
+}
+
+.arrow {
+  font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: rgb(183, 132, 39);
+  }
+}
+
+button {
+  width: 90%;
+  height: 4rem;
+  color: white;
+  border: 1px solid black;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
