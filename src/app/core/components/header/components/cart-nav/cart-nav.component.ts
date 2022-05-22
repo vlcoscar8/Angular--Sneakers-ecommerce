@@ -1,11 +1,5 @@
 import { ProductCartService } from './../../../../services/product-cart/productcart.service';
-import {
-  Component,
-  Input,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-cart-nav',
@@ -13,11 +7,11 @@ import {
   styleUrls: ['./cart-nav.component.scss'],
 })
 export class CartNavComponent implements OnInit, OnChanges {
-  public productsCart?: Object[];
+  public productsCart?: any[];
   public totalPrice?: number;
 
-  @Input() public cartOpened?: boolean;
   @Input() public isDesktop?: boolean;
+  @Input() public cartProductsLenght?: number;
 
   constructor(private productCartService: ProductCartService) {}
 
@@ -26,6 +20,10 @@ export class CartNavComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    this.totalPrice = this.productCartService.getTotalPrice();
+  }
+
+  public clickRemove() {
     this.totalPrice = this.productCartService.getTotalPrice();
   }
 }

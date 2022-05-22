@@ -24,16 +24,19 @@ export class ProductCartService {
    * @param product The product object choosed by the user
    */
   public setCartProduct(product: IProduct, size: string, units: number) {
-    const productCartObject: Object = {
+    const productCartObject: any = {
       product: product,
       size: size,
       units: units,
     };
+
     this.cartProducts.push(productCartObject);
 
-    this.cartProducts.forEach(
-      (product) => (this.totalPrice += product.product.price * product.units)
-    );
+    this.totalPrice = 0;
+
+    this.cartProducts.forEach((product) => {
+      this.totalPrice += product.product.price * product.units;
+    });
   }
 
   /**
@@ -49,6 +52,8 @@ export class ProductCartService {
     );
 
     this.cartProducts.splice(this.cartProducts.indexOf(deletedProduct), 1);
+
+    this.totalPrice -= product.product.price * product.units;
   }
 
   public getTotalPrice() {

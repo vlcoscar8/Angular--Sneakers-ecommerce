@@ -8,3 +8,17 @@
     font-size: 1.4rem;
   }
 }
+
+.button__cart {
+  width: 90%;
+  height: 4rem;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 0.6rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(41, 41, 41);
+  }
+}
