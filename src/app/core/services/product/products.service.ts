@@ -10,7 +10,7 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   /**
-   * 
+   *
    * @param genre The query param to filter by genre
    * @param brand The query param to filter by brand name
    * @returns the method asyncronous with the endpoint to get the list of products
@@ -22,13 +22,19 @@ export class ProductsService {
   }
 
   /**
-   * 
+   *
    * @param productId The product Id in the param when the user click on a product
    * @returns the method asyncronous with the endpoint to get an especific product by id
    */
   public getProductById(productId?: number): Observable<IProduct> {
     return this.httpClient.get<IProduct>(
       `https://sneakersecommerceapi.vercel.app/product/${productId}`
+    );
+  }
+
+  public getShopHome(): Observable<any> {
+    return this.httpClient.get<IProduct>(
+      `https://sneakersecommerceapi.vercel.app/home`
     );
   }
 }

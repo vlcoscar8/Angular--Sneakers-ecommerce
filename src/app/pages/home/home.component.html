@@ -1,1 +1,36 @@
-<p>home works!</p>
+<div class="home">
+  <div class="home__hero">
+    <h1 class="home__hero--title">SNEAKERS ECOMMERCE</h1>
+    <img
+      class="home__hero--img"
+      src="https://images.complex.com/complex/images/c_fill,dpr_auto,f_auto,q_auto,w_1400/fl_lossy,pg_1/plr76cqciklegvujzncp/nike-epic-react-flyknit-running-shoes?fimg-ssr-default"
+    />
+  </div>
+  <div class="home__genre">
+    <div class="home__genre--man">
+      <h1>Zapatillas para Hombre</h1>
+      <img
+        [routerLink]="['/product-list', { genre: 'Man' }]"
+        src="https://images.puma.com/image/upload/q_auto,f_auto,w_600/regional/~regional~EEA~others~KOPs~SS22~SPORTSTYLE~CAPRO~EEA_220310_Display_Banners_Mobile_D1.jpg/fmt/jpg/fmt/png"
+        alt="man__products"
+      />
+    </div>
+    <div class="home__genre--woman">
+      <h1>Zapatillas para Mujer</h1>
+      <img
+        [routerLink]="['/product-list', { genre: 'Woman' }]"
+        src="https://images.puma.com/image/upload/q_auto,f_auto,w_600/regional/~regional~EEA~others~KOPs~SS22~SPORTSTYLE~MAYZE_LTH_POP~EEA_22SS_ECOM_MF_SP_Mayze-Lth-Pop_FullBleedHero_TabMob_1536x1536_1.jpg/fmt/jpg/fmt/png"
+        alt="woman__products"
+      />
+    </div>
+  </div>
+  <div class="home__products">
+    <h2>Últimos productos comprados:</h2>
+    <div class="home__products--list" *ngIf="lastProducts">
+      <app-product
+        *ngFor="let product of lastProducts"
+        [product]="product"
+      ></app-product>
+    </div>
+  </div>
+</div>
