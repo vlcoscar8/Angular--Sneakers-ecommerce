@@ -24,13 +24,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'fav-cart',
-    loadChildren: () =>
-      import('src/app/pages/product-cart/product-cart.module').then(
-        (m) => m.ProductCartModule
-      ),
-  },
-  {
     path: '**',
     redirectTo: '',
     component: HomeComponent,
