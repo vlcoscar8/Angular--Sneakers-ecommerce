@@ -58,6 +58,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe((product) => {
         this.product = product;
         this.mainImg = this.product?.img[0];
+        this.secondaryImg?.push(this.product.img[0]);
         this.secondaryImg?.push(this.product.img[1]);
         this.secondaryImg?.push(this.product.img[2]);
         this.sizes = product.sizes.split(', ');
@@ -73,10 +74,6 @@ export class ProductDetailComponent implements OnInit {
    * @param img The img that the user click on
    */
   public swapMain(img: string) {
-    this.secondaryImg?.splice(this.secondaryImg.indexOf(img), 1);
-    if (this.mainImg) {
-      this.secondaryImg?.push(this.mainImg);
-    }
     this.mainImg = img;
   }
 

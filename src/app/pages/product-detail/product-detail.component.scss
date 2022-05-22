@@ -41,15 +41,20 @@
 
     &--secondary {
       display: flex;
-      justify-content: start;
+      justify-content: center;
       gap: 2rem;
       width: 100%;
 
       img {
-        width: 12rem;
+        width: 9rem;
         border: 2px solid transparent;
         cursor: pointer;
         border-radius: 0.8rem;
+        border: 2px solid rgb(222, 222, 220);
+
+        @include desktop {
+          width: 12rem;
+        }
 
         &:hover {
           border: 2px solid rgb(226, 175, 79);

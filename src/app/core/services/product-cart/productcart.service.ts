@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProductCartService {
   public cartProducts: any[] = [];
+  public totalPrice: number = 0;
 
   constructor() {}
 
@@ -19,6 +20,7 @@ export class ProductCartService {
 
   /**
    * Set the product on the product cart list
+   * and set the total price of the products in the list
    * @param product The product object choosed by the user
    */
   public setCartProduct(product: IProduct, size: string, units: number) {
@@ -28,6 +30,10 @@ export class ProductCartService {
       units: units,
     };
     this.cartProducts.push(productCartObject);
+
+    this.cartProducts.forEach(
+      (product) => (this.totalPrice += product.product.price * product.units)
+    );
   }
 
   /**
@@ -35,7 +41,6 @@ export class ProductCartService {
    * @param product The product info that the user wants to delete
    */
   public removeCartProduct(product: any) {
-    console.log(this.cartProducts);
     const deletedProduct: any[] = this.cartProducts.filter(
       (productCart) =>
         productCart.product.id === product.product.id &&
@@ -44,5 +49,9 @@ export class ProductCartService {
     );
 
     this.cartProducts.splice(this.cartProducts.indexOf(deletedProduct), 1);
+  }
+
+  public getTotalPrice() {
+    return this.totalPrice;
   }
 }
