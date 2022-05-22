@@ -31,14 +31,20 @@
     <i
       (click)="openCart()"
       [ngStyle]="{
-        color: path === '/fav-cart' ? 'rgb(226, 175, 79)' : 'white'
+        color: cartOpened ? 'rgb(226, 175, 79)' : 'white'
       }"
       class="fa-solid fa-cart-shopping header__navbar--cart"
     ></i>
     <div class="header__navbar--counter" *ngIf="cartProducts">
       <p *ngIf="cartProducts.length > 0">{{ cartProducts?.length }}</p>
     </div>
-    <i class="fa-solid fa-user header__navbar--user"></i>
+    <i
+      (click)="openUserNav()"
+      [ngStyle]="{
+        color: userNavOpened ? 'rgb(226, 175, 79)' : 'white'
+      }"
+      class="fa-solid fa-user header__navbar--user"
+    ></i>
     <app-nav-btn
       [navClicked]="navClicked"
       *ngIf="!isDesktop"
@@ -56,11 +62,14 @@
   *ngIf="showFilter"
   (click)="closeFilter()"
 ></app-header-filter>
-<app-cart-nav
+<app-aside-nav
+  class="aside__nav"
   [ngStyle]="{
-    transform: cartOpened ? 'translateX(0)' : 'translateX(50rem)'
+    transform:
+      userNavOpened || cartOpened ? 'translateX(0)' : 'translateX(50rem)'
   }"
-  class="cart__nav"
+  [cartOpened]="cartOpened"
   [isDesktop]="isDesktop"
-  [cartProductsLenght]="cartProducts?.length"
-></app-cart-nav>
+  [cartProducts]="cartProducts"
+  [userNavOpened]="userNavOpened"
+></app-aside-nav>

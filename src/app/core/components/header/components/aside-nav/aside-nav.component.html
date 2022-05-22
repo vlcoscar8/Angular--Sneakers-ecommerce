@@ -1,0 +1,8 @@
+<div>
+  <app-cart-nav
+    *ngIf="cartOpened"
+    [isDesktop]="isDesktop"
+    [cartProductsLenght]="cartProducts?.length"
+  ></app-cart-nav>
+  <app-user-nav *ngIf="userNavOpened"></app-user-nav>
+</div>

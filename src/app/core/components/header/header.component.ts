@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public genre?: string;
   public cartProducts?: Object[];
   public cartOpened: boolean = false;
+  public userNavOpened: boolean = false;
 
   constructor(
     private router: Router,
@@ -86,5 +87,11 @@ export class HeaderComponent implements OnInit {
    */
   public openCart() {
     this.cartOpened = !this.cartOpened;
+    this.userNavOpened = false;
+  }
+
+  public openUserNav() {
+    this.userNavOpened = !this.userNavOpened;
+    this.cartOpened = false;
   }
 }
