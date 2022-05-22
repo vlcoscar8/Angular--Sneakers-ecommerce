@@ -13,24 +13,98 @@
   </div>
   <div *ngIf="buttonClicked === 'Registrarse'" class="user__form">
     <i class="fa-solid fa-arrow-left-long arrow" (click)="back()"></i>
-    <form class="user__form--form">
+    <form
+      *ngIf="signupForm"
+      class="user__form--form"
+      [formGroup]="signupForm"
+      (submit)="signup()"
+    >
       <label>Nombre de usuario</label>
-      <input type="text" placeholder="nombre de usuario" />
+      <input
+        type="text"
+        placeholder="nombre de usuario"
+        formControlName="username"
+      />
+      <p
+        *ngIf="
+          !signupForm.get('username')?.valid &&
+          signupForm.get('username')?.dirty
+        "
+        class="input-error"
+      >
+        This value is required
+      </p>
       <label>E-mail</label>
-      <input type="text" placeholder="emailejemplo@email.com" />
+      <input
+        type="text"
+        placeholder="emailejemplo@email.com"
+        formControlName="email"
+      />
+      <p
+        *ngIf="
+          !signupForm.get('email')?.valid && signupForm.get('email')?.dirty
+        "
+        class="input-error"
+      >
+        This value is required
+      </p>
       <label>Constraseña</label>
-      <input type="password" placeholder="1234Abcd" />
-      <button type="submit" class="signupbtn">Registrarse</button>
+      <input
+        type="password"
+        placeholder="1234Abcd"
+        formControlName="password"
+      />
+      <p
+        *ngIf="
+          !signupForm.get('password')?.valid &&
+          signupForm.get('password')?.dirty
+        "
+        class="input-error"
+      >
+        Minimum eight characters
+      </p>
+      <button type="submit" class="signupbtn" [disabled]="!signupForm.valid">
+        Registrarse
+      </button>
     </form>
   </div>
   <div *ngIf="buttonClicked === 'Iniciar sesión'" class="user__form">
     <i class="fa-solid fa-arrow-left-long arrow" (click)="back()"></i>
-    <form class="user__form--form">
+    <form
+      *ngIf="loginForm"
+      class="user__form--form"
+      [formGroup]="loginForm"
+      (submit)="login()"
+    >
       <label>E-mail</label>
-      <input type="text" placeholder="nombre de usuario" />
+      <input
+        type="text"
+        placeholder="nombre de usuario"
+        formControlName="email"
+      />
+      <p
+        *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.dirty"
+        class="input-error"
+      >
+        This value is required
+      </p>
       <label>Constraseña</label>
-      <input type="password" placeholder="1234Abcd" />
-      <button type="submit" class="loginbtn">Iniciar sesión</button>
+      <input
+        type="password"
+        placeholder="1234Abcd"
+        formControlName="password"
+      />
+      <p
+        *ngIf="
+          !loginForm.get('password')?.valid && loginForm.get('password')?.dirty
+        "
+        class="input-error"
+      >
+        Minimum eight characters
+      </p>
+      <button type="submit" class="loginbtn" [disabled]="!loginForm.valid">
+        Iniciar sesión
+      </button>
     </form>
   </div>
 </div>

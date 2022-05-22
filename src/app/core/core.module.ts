@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsService } from './services/product/products.service';
@@ -26,7 +27,13 @@ import { AsideNavComponent } from './components/header/components/aside-nav/asid
     AsideNavComponent,
   ],
   providers: [ProductCartService, ProductsService],
-  imports: [CommonModule, RouterModule, HttpClientModule, SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
   exports: [FooterComponent, HeaderComponent],
 })
 export class CoreModule {}
