@@ -4,18 +4,47 @@
     {{ brand ? brand : genre === "Man" ? "hombre" : "mujer" }}:
   </h1>
   <div class="gallery__filters">
-    <i class="fa-solid fa-magnifying-glass find"></i>
-    <input
-      class="filter__find"
-      type="text"
-      placeholder="search"
-      [(ngModel)]="filterValue"
-    />
+    <div class="filter__find">
+      <i class="fa-solid fa-magnifying-glass find"></i>
+      <input type="text" placeholder="search" [(ngModel)]="filterValue" />
+    </div>
+    <div class="filter__sort">
+      <h2>Ordenar por:</h2>
+      <button (click)="sortHighPrice()">Más caro</button>
+      <button (click)="sortLowerPrice()">Más barato</button>
+    </div>
+    <div class="filter__brands">
+      <h2>Buscar por marca:</h2>
+      <select [(ngModel)]="filterValue">
+        <option value="">Todas</option>
+        <option *ngFor="let brand of brands | uniqueValues">
+          {{ brand }}
+        </option>
+      </select>
+    </div>
   </div>
   <div class="gallery__container" *ngIf="products">
     <app-product
-      *ngFor="let product of products | filter: filterValue"
+      *ngFor="
+        let product of products
+          | filter: filterValue
+          | pagination: currentPage
+          | sortPrice: sortPriceValue
+      "
       [product]="product"
     ></app-product>
+  </div>
+  <div class="gallery__pagination">
+    <i
+      class="fa-solid fa-chevron-left arrow"
+      *ngIf="currentPage !== 1"
+      (click)="previousPage()"
+    ></i>
+    <h1>{{ currentPage }}</h1>
+    <i
+      class="fa-solid fa-chevron-right arrow"
+      *ngIf="currentPage < 4"
+      (click)="nextPage()"
+    ></i>
   </div>
 </div>

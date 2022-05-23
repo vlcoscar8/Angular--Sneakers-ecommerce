@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
@@ -6,10 +6,8 @@ import { Input } from '@angular/core';
   templateUrl: './nav-btn.component.html',
   styleUrls: ['./nav-btn.component.scss'],
 })
-export class NavBtnComponent implements OnInit {
+export class NavBtnComponent {
   @Input() public navClicked?: boolean;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

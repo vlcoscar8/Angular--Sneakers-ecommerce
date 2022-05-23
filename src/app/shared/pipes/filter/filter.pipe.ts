@@ -6,8 +6,10 @@ import { IProduct } from 'src/app/core/services/product/model/product.model';
 })
 export class FilterPipe implements PipeTransform {
   transform(value: IProduct[], criteria: string): IProduct[] {
-    return value.filter((product) =>
-      product.title.toLowerCase().includes(criteria.toLowerCase())
+    return value.filter(
+      (product) =>
+        product.title.toLowerCase().includes(criteria.toLowerCase()) ||
+        product.brand === criteria
     );
   }
 }

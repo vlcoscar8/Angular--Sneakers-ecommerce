@@ -15,40 +15,76 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     width: 80vw;
-    height: 5rem;
-    padding-bottom: 1rem;
+
+    gap: 3rem;
+    padding: 1rem 0;
     border-bottom: 1px solid rgb(165, 165, 165);
-    position: relative;
 
     @include desktop {
+      height: 5rem;
       flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .find {
-      position: absolute;
-      left: 92%;
-
-      @include desktop {
-        left: 32%;
-      }
+      justify-content: start;
     }
 
     .filter__find {
+      position: relative;
       width: 90%;
-      height: 2rem;
-      border-radius: 3rem;
-      padding: 0 2rem;
-      border: 1px solid rgb(188, 188, 188);
 
       @include desktop {
         width: 30%;
       }
 
-      &:focus {
-        outline: none;
-        border: 1px solid rgb(226, 175, 79);
+      .find {
+        position: absolute;
+        top: 31%;
+        left: 93%;
+        font-size: 1.5rem;
+      }
+
+      input {
+        width: 90%;
+        height: 3rem;
+        border-radius: 3rem;
+        padding: 0 2rem;
+        border: 1px solid rgb(188, 188, 188);
+
+        &:focus {
+          outline: none;
+          border: 1px solid rgb(226, 175, 79);
+        }
+      }
+    }
+
+    .filter__sort {
+      display: flex;
+      padding: 1rem 3rem;
+      border: 1px solid rgb(246, 246, 246);
+      border-radius: 3rem;
+      gap: 1rem;
+      align-items: center;
+
+      button {
+        background-color: black;
+        color: white;
+        width: 10rem;
+        height: 3rem;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    .filter__brands {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      select {
+        height: 3rem;
+        padding: 0.4rem 2rem;
+        border-radius: 2rem;
       }
     }
   }
@@ -58,5 +94,20 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .arrow {
+      font-size: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(226, 175, 79);
+      }
+    }
   }
 }

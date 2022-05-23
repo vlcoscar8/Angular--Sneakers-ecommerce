@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
@@ -6,10 +6,8 @@ import { Input } from '@angular/core';
   templateUrl: './header-filter.component.html',
   styleUrls: ['./header-filter.component.scss'],
 })
-export class HeaderFilterComponent implements OnInit {
+export class HeaderFilterComponent {
   @Input() public genre?: string;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

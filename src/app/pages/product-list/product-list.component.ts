@@ -2,7 +2,7 @@ import { ProductsService } from './../../core/services/product/products.service'
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../core/services/product/model/product.model';
 import { Component, OnInit } from '@angular/core';
-import { switchMap, Observable } from 'rxjs';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -14,6 +14,9 @@ export class ProductListComponent implements OnInit {
   public brand?: string;
   public genre?: string;
   public filterValue: string = '';
+  public sortPriceValue?: boolean;
+  public brands: string[] = [];
+  public currentPage: number = 1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,6 +39,27 @@ export class ProductListComponent implements OnInit {
       )
       .subscribe((products) => {
         this.products = products;
+        this.brands = this.products.map((product) => product.brand);
       });
+  }
+
+  public sortHighPrice() {
+    this.sortPriceValue = true;
+  }
+
+  public sortLowerPrice() {
+    this.sortPriceValue = false;
+  }
+
+  public filterBrand(brand: string) {
+    this.filterValue = brand;
+  }
+
+  public previousPage() {
+    this.currentPage -= 1;
+  }
+
+  public nextPage() {
+    this.currentPage += 1;
   }
 }
