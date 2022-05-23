@@ -61,7 +61,20 @@
     </form>
     <div class="product__info--comments">
       <h2>Comentarios:</h2>
-      <div *ngFor="let commentary of comments"></div>
+      <div *ngFor="let commentary of comments" class="commentary">
+        <div class="commentary__user">
+          <img [src]="commentary?.user[0].img" />
+          <div class="commentary__user--info">
+            <h2>{{ commentary?.user[0].username }}</h2>
+            <h2 class="data">{{ commentary?.data.split("G")[0] }}</h2>
+          </div>
+        </div>
+        <div class="commentary__content">
+          <h2>
+            {{ commentary?.content }}
+          </h2>
+        </div>
+      </div>
     </div>
   </div>
 </div>

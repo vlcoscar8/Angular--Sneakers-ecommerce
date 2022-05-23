@@ -21,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
   public mainImg?: string;
   public secondaryImg?: string[] = [];
   public sizes?: string[] = [];
-  public comments?: string[];
+  public comments?: any[];
   public quantity: number[] = [];
   public sizeSelected?: string;
   public quantSelected?: number;
