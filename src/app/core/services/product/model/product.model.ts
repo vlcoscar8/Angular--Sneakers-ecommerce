@@ -9,6 +9,7 @@ export interface IProduct {
   units: number;
   sizes: string;
   value: number;
+  comments: string[];
   quantSelected: number;
   sizeSelected: string;
 }

@@ -21,6 +21,7 @@ export class ProductDetailComponent implements OnInit {
   public mainImg?: string;
   public secondaryImg?: string[] = [];
   public sizes?: string[] = [];
+  public comments?: string[];
   public quantity: number[] = [];
   public sizeSelected?: string;
   public quantSelected?: number;
@@ -62,10 +63,12 @@ export class ProductDetailComponent implements OnInit {
         this.secondaryImg?.push(this.product.img[1]);
         this.secondaryImg?.push(this.product.img[2]);
         this.sizes = product.sizes.split(', ');
+        this.comments = this.product?.comments;
 
         for (let i = 1; i <= product.units; i++) {
           this.quantity.push(i);
         }
+        console.log(this.comments);
       });
   }
 
