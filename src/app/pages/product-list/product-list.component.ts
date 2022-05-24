@@ -50,6 +50,7 @@ export class ProductListComponent implements OnInit {
   public sortLowerPrice() {
     this.sortPriceValue = false;
   }
+  
 
   public filterBrand(brand: string) {
     this.filterValue = brand;

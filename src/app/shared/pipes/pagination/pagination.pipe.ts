@@ -3,11 +3,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'pagination',
+  pure: false,
 })
 export class PaginationPipe implements PipeTransform {
-  transform(value: IProduct[], criteria: number): IProduct[] {
-    const firstIndex = (criteria - 1) * 6;
-    const lastIndex = criteria * 6;
+  transform(value: IProduct[], currentPage: number): IProduct[] {
+    const firstIndex = (currentPage - 1) * 6;
+    const lastIndex = currentPage * 6;
     return value.slice(firstIndex, lastIndex);
   }
 }

@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(private ProductsService: ProductsService) {}
 
   ngOnInit(): void {
+    fetch('https://dragon-ball-api.herokuapp.com/api/character')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+
     this.ProductsService.getShopHome().subscribe((info) => {
       this.lastProducts = info[0].lastBuys;
       this.mostValuated = info[0].mostValuated;

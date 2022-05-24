@@ -27,9 +27,9 @@
     <app-product
       *ngFor="
         let product of products
+          | sortPrice: sortPriceValue
           | filter: filterValue
           | pagination: currentPage
-          | sortPrice: sortPriceValue
       "
       [product]="product"
     ></app-product>
