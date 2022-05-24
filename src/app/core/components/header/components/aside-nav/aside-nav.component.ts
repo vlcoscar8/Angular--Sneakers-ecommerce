@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { UserNavComponent } from './components/user-nav/user-nav.component';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-aside-nav',
@@ -12,5 +13,12 @@ export class AsideNavComponent {
   @Input() public cartProductsLenght?: number;
   @Input() public cartProducts?: Object[];
 
+  @Output() public userNavClosed: EventEmitter<boolean> = new EventEmitter();
+
   constructor() {}
+
+  public closeNav(value: boolean) {
+    this.userNavOpened = value;
+    this.userNavClosed.emit(value);
+  }
 }

@@ -1,8 +1,17 @@
-<div>
+<div
+  class="aside__nav"
+  [ngStyle]="{
+    transform:
+      userNavOpened || cartOpened ? 'translateX(0)' : 'translateX(50rem)'
+  }"
+>
   <app-cart-nav
     *ngIf="cartOpened"
     [isDesktop]="isDesktop"
     [cartProductsLenght]="cartProducts?.length"
   ></app-cart-nav>
-  <app-user-nav *ngIf="userNavOpened"></app-user-nav>
+  <app-user-nav
+    *ngIf="userNavOpened"
+    (closeNav)="closeNav($event)"
+  ></app-user-nav>
 </div>

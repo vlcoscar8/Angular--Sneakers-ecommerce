@@ -1,1 +1,16 @@
+@import "/src/styles.scss";
+.aside__nav {
+  background-color: white;
+  position: absolute;
+  right: 0;
+  padding: 2rem;
+  width: 90vw;
+  height: 100vh;
+  border: 1px solid rgb(208, 208, 208);
+  transition: all 0.5s ease;
+  z-index: 10;
 
+  @include desktop {
+    width: 32vw;
+  }
+}

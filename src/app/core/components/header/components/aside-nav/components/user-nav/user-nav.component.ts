@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -16,7 +17,9 @@ export class UserNavComponent implements OnInit {
   public loginForm?: FormGroup;
   public signupForm?: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  @Output() public closeNav: EventEmitter<boolean> = new EventEmitter();
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [
@@ -52,7 +55,8 @@ export class UserNavComponent implements OnInit {
 
   public signup() {
     const formValue = this.signupForm?.value;
-    console.log(formValue);
+    this.router.navigate(['']);
+    this.closeNav?.emit(false);
   }
 
   public login() {

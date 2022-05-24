@@ -94,4 +94,8 @@ export class HeaderComponent implements OnInit {
     this.userNavOpened = !this.userNavOpened;
     this.cartOpened = false;
   }
+
+  public userNavClosed(value: boolean) {
+    this.userNavOpened = value;
+  }
 }

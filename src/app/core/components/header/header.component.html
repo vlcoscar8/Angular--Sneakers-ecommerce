@@ -63,13 +63,9 @@
   (click)="closeFilter()"
 ></app-header-filter>
 <app-aside-nav
-  class="aside__nav"
-  [ngStyle]="{
-    transform:
-      userNavOpened || cartOpened ? 'translateX(0)' : 'translateX(50rem)'
-  }"
   [cartOpened]="cartOpened"
   [isDesktop]="isDesktop"
   [cartProducts]="cartProducts"
   [userNavOpened]="userNavOpened"
+  (userNavClosed)="userNavClosed($event)"
 ></app-aside-nav>
