@@ -83,18 +83,24 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * Open de cart nav when the user click on the icon
+   * Open the cart nav when the user click on the icon
    */
   public openCart() {
     this.cartOpened = !this.cartOpened;
     this.userNavOpened = false;
   }
 
+  /**
+   * Open the user nav when the user click on the icon
+   */
   public openUserNav() {
     this.userNavOpened = !this.userNavOpened;
     this.cartOpened = false;
   }
 
+  /**
+   * Close the user nav when the user click on login or register
+   */
   public userNavClosed(value: boolean) {
     this.userNavOpened = value;
   }

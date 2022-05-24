@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +18,7 @@ export class ProductsService {
    */
   public getProducts(genre?: string, brand?: string): Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(
-      `https://sneakersecommerceapi.vercel.app/products?genre=${genre}&brand=${brand}`
+      `${environment.apiUrl}products?genre=${genre}&brand=${brand}`
     );
   }
 
@@ -28,13 +29,11 @@ export class ProductsService {
    */
   public getProductById(productId?: number): Observable<IProduct> {
     return this.httpClient.get<IProduct>(
-      `https://sneakersecommerceapi.vercel.app/product/${productId}`
+      `${environment.apiUrl}product/${productId}`
     );
   }
 
   public getShopHome(): Observable<any> {
-    return this.httpClient.get<IProduct>(
-      `https://sneakersecommerceapi.vercel.app/home`
-    );
+    return this.httpClient.get<IProduct>(`${environment.apiUrl}home`);
   }
 }
