@@ -1,5 +1,5 @@
 <div class="user">
-  <div *ngIf="buttonClicked === ''" class="user__buttons">
+  <div *ngIf="buttonClicked === '' && !isLogged" class="user__buttons">
     <button #loginbtn (click)="openForm(loginbtn)" class="user__buttons--login">
       Iniciar sesión
     </button>
@@ -106,5 +106,14 @@
         Iniciar sesión
       </button>
     </form>
+  </div>
+  <div *ngIf="isLogged" class="user__buttons">
+    <h1>Hola {{ username }}</h1>
+    <button class="user__buttons--signup" [routerLink]="['user-account']">
+      Mi cuenta
+    </button>
+    <button class="user__buttons--login" (click)="logout()">
+      Cerrar sesión
+    </button>
   </div>
 </div>

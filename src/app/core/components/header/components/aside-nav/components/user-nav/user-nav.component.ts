@@ -17,6 +17,8 @@ export class UserNavComponent implements OnInit {
   public buttonClicked: string = '';
   public loginForm?: FormGroup;
   public signupForm?: FormGroup;
+  public isLogged?: boolean;
+  public username?: string;
 
   @Output() public closeNav: EventEmitter<boolean> = new EventEmitter();
 
@@ -48,6 +50,11 @@ export class UserNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.buttonClicked = '';
+    this.isLogged = this.userService.isLoggedIn();
+
+    this.userService
+      .getUserProfile(this.userService.userId())
+      .subscribe((res) => (this.username = res.data.username));
   }
 
   public openForm(value: any) {
@@ -59,14 +66,25 @@ export class UserNavComponent implements OnInit {
   }
 
   public signup() {
-    const formValue = this.signupForm?.value;
-    console.log(formValue);
-    this.userService.register(formValue).subscribe((e) => console.log(e));
+    if (this.signupForm?.value) {
+      this.userService
+        .register(this.signupForm.value)
+        .subscribe((res) => console.log(res));
+    }
     this.closeNav?.emit(false);
   }
 
   public login() {
-    const formValue = this.loginForm?.value;
-    console.log(formValue);
+    if (this.loginForm?.value) {
+      this.userService
+        .login(this.loginForm.value)
+        .subscribe((res) => console.log(res));
+    }
+    this.closeNav?.emit(false);
+  }
+
+  public logout() {
+    this.userService.logout();
+    this.closeNav?.emit(false);
   }
 }

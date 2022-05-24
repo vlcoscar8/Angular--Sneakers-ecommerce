@@ -20,14 +20,15 @@ export class UserService {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   public register(user: IUser): Observable<IUserResponseApi> {
-    return this.httpClient
-      .post<IUserResponseApi>(`${environment.apiUrl}/user/register`, user)
-      .pipe(tap((res: IUserResponseApi) => {}));
+    return this.httpClient.post<IUserResponseApi>(
+      `${environment.apiUrl}user/register`,
+      user
+    );
   }
 
   public login(user: IUser): Observable<IUserResponseLogin> {
     return this.httpClient
-      .post<IUserResponseLogin>(`${environment.apiUrl}/user/login`, user)
+      .post<IUserResponseLogin>(`${environment.apiUrl}user/login`, user)
       .pipe(
         tap((res: IUserResponseLogin) => {
           const user = JSON.stringify({
