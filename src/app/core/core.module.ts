@@ -1,3 +1,4 @@
+import { UserService } from './services/user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +27,7 @@ import { AsideNavComponent } from './components/header/components/aside-nav/asid
     UserNavComponent,
     AsideNavComponent,
   ],
-  providers: [ProductCartService, ProductsService],
+  providers: [ProductCartService, ProductsService, UserService],
   imports: [
     CommonModule,
     RouterModule,

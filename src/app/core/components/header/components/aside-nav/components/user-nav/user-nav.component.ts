@@ -1,3 +1,4 @@
+import { UserService } from './../../../../../../services/user/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {
@@ -19,7 +20,11 @@ export class UserNavComponent implements OnInit {
 
   @Output() public closeNav: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [
@@ -55,7 +60,8 @@ export class UserNavComponent implements OnInit {
 
   public signup() {
     const formValue = this.signupForm?.value;
-    this.router.navigate(['']);
+    console.log(formValue);
+    this.userService.register(formValue).subscribe((e) => console.log(e));
     this.closeNav?.emit(false);
   }
 
