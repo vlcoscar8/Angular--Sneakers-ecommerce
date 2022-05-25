@@ -1,3 +1,4 @@
+import { PaginationService } from './../../core/services/pagination/pagination.service';
 import { ProductsService } from './../../core/services/product/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../core/services/product/model/product.model';
@@ -17,10 +18,12 @@ export class ProductListComponent implements OnInit {
   public sortPriceValue?: boolean;
   public brands: string[] = [];
   public currentPage: number = 1;
+  public maxPage: number = 1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private pagination: PaginationService
   ) {}
 
   /**
@@ -41,6 +44,8 @@ export class ProductListComponent implements OnInit {
         this.products = products;
         this.brands = this.products.map((product) => product.brand);
       });
+
+    this.pagination.maxPage$.subscribe((page) => (this.maxPage = page));
   }
 
   public sortHighPrice() {
@@ -50,7 +55,6 @@ export class ProductListComponent implements OnInit {
   public sortLowerPrice() {
     this.sortPriceValue = false;
   }
-  
 
   public filterBrand(brand: string) {
     this.filterValue = brand;

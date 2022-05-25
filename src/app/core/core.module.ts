@@ -1,3 +1,4 @@
+import { PaginationService } from './services/pagination/pagination.service';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { UserService } from './services/user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +29,13 @@ import { AsideNavComponent } from './components/header/components/aside-nav/asid
     UserNavComponent,
     AsideNavComponent,
   ],
-  providers: [ProductCartService, ProductsService, UserService, AuthGuard],
+  providers: [
+    ProductCartService,
+    ProductsService,
+    UserService,
+    PaginationService,
+    AuthGuard,
+  ],
   imports: [
     CommonModule,
     RouterModule,

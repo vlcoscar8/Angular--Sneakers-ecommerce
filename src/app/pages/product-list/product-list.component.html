@@ -43,7 +43,7 @@
     <h1>{{ currentPage }}</h1>
     <i
       class="fa-solid fa-chevron-right arrow"
-      *ngIf="currentPage < 4"
+      *ngIf="currentPage < maxPage"
       (click)="nextPage()"
     ></i>
   </div>
