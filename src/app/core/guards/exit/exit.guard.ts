@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ExitGuard implements CanDeactivate<unknown> {
+  public existProducts: boolean = false;
+
   constructor(
     private productCartService: ProductCartService,
     private router: Router
@@ -27,12 +29,16 @@ export class ExitGuard implements CanDeactivate<unknown> {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.productCartService.existProducts) {
+    this.productCartService.existProducts.subscribe(
+      (exist) => (this.existProducts = exist)
+    );
+
+    if (this.existProducts) {
       return window.confirm(
         'Todavia tienes productos en el carrito, no quieres finalizar el pedido todavia?'
       );
     }
 
-    return this.router.createUrlTree(['']);
+    return true;
   }
 }
