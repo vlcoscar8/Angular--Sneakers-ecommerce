@@ -11,6 +11,18 @@
     <h2>Resumen</h2>
     <h2>Nº de productos: {{ products.length }}</h2>
     <h2>Precio total: {{ totalPrice }}€</h2>
-    <button (click)="buyProduct()">Finalizar pedido</button>
+    <button
+      [ngClass]="{
+        disabled__btn: totalPrice === 0
+      }"
+      (click)="buyProduct()"
+      [disabled]="products.length === 0"
+    >
+      <i class="fa-solid fa-spinner fa-spin" *ngIf="buyFinished"></i>
+      {{ buyFinished ? "Procesando compra" : "Finalizar pedido" }}
+    </button>
+    <p *ngIf="buyOK" class="buy__text">
+      Compra realizada con exito! <i class="fa-solid fa-check"></i>
+    </p>
   </div>
 </div>

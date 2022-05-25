@@ -60,3 +60,15 @@
     }
   }
 }
+
+.buy__text {
+  align-self: center;
+  color: green;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.disabled__btn {
+  background-color: rgb(189, 189, 189) !important;
+  color: gray;
+  cursor: auto !important;
+}

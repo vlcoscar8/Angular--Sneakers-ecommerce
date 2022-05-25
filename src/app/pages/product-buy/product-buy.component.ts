@@ -12,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProductBuyComponent implements OnInit {
   public products: any[] = [];
   public totalPrice: number = 0;
+  public buyFinished: boolean = false;
+  public buyOK: boolean = false;
 
   constructor(
     private productCartService: ProductCartService,
@@ -24,9 +26,12 @@ export class ProductBuyComponent implements OnInit {
     this.productCartService.totalPrice.subscribe(
       (price) => (this.totalPrice = price)
     );
+    this.buyOK = false;
   }
 
   public buyProduct() {
+    this.buyFinished = true;
+
     let userId = this.userService.userId();
 
     this.products.forEach((product) => {
@@ -37,7 +42,13 @@ export class ProductBuyComponent implements OnInit {
       };
 
       this.productsService.buyProduct(userId, bodyProduct).subscribe({
-        next: (res) => console.log(res),
+        next: (res) => {
+          this.buyFinished = false;
+          this.products.forEach((product) =>
+            this.productCartService.removeCartProduct(product)
+          );
+          this.buyOK = true;
+        },
         error: (err) => console.log(err),
       });
     });
