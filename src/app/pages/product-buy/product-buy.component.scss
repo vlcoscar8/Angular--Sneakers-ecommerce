@@ -1,0 +1,45 @@
+.bag {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 3rem;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgb(192, 192, 192);
+
+    h2 {
+      align-self: flex-start;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 40vw;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgb(192, 192, 192);
+
+    button {
+      background-color: black;
+      color: white;
+      width: 90%;
+      align-self: center;
+      height: 4rem;
+      border-radius: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

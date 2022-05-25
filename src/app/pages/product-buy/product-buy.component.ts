@@ -8,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-buy.component.scss'],
 })
 export class ProductBuyComponent implements OnInit {
-  public products?: IProduct[];
+  public products: IProduct[] = [];
+  public totalPrice: number = 0;
 
   constructor(private productCartService: ProductCartService) {}
 
   ngOnInit(): void {
     this.products = this.productCartService.getCartProducts();
+    this.productCartService.totalPrice.subscribe(
+      (price) => (this.totalPrice = price)
+    );
   }
 }

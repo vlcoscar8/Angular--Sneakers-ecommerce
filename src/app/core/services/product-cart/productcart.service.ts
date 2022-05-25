@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProductCartService {
   public cartProducts: any[] = [];
-  public totalPrice: number = 0;
+  public totalPrice: ReplaySubject<number> = new ReplaySubject();
   public existProducts: ReplaySubject<boolean> = new ReplaySubject();
 
   constructor() {}
@@ -34,11 +34,13 @@ export class ProductCartService {
 
     this.cartProducts.push(productCartObject);
 
-    this.totalPrice = 0;
+    let price = 0;
 
     this.cartProducts.forEach((product) => {
-      this.totalPrice += product.product.price * product.units;
+      price += product.product.price * product.units;
     });
+
+    this.totalPrice.next(price);
 
     this.existProducts.next(true);
   }
@@ -57,10 +59,11 @@ export class ProductCartService {
 
     this.cartProducts.splice(this.cartProducts.indexOf(deletedProduct), 1);
 
-    this.totalPrice -= product.product.price * product.units;
+    this.totalPrice.next(product.product.price * product.units);
 
     if (this.cartProducts.length === 0) {
       this.existProducts.next(false);
+      this.totalPrice.next(0);
     }
   }
 

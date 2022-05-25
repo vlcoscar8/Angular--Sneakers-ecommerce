@@ -1,22 +1,15 @@
 import { UserService } from './../../../../../../services/user/user.service';
 import { ProductCartService } from '../../../../../../services/product-cart/productcart.service';
-import {
-  Component,
-  Input,
-  OnInit,
-  OnChanges,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-cart-nav',
   templateUrl: './cart-nav.component.html',
   styleUrls: ['./cart-nav.component.scss'],
 })
-export class CartNavComponent implements OnInit, OnChanges {
+export class CartNavComponent implements OnInit {
   public productsCart?: any[];
-  public totalPrice?: number;
+  public totalPrice: number = 0;
   public userLogged?: boolean;
 
   @Input() public isDesktop?: boolean;
@@ -34,14 +27,9 @@ export class CartNavComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.productsCart = this.productCartService.getCartProducts();
     this.userLogged = this.userService.isLoggedIn();
-  }
-
-  ngOnChanges(): void {
-    this.totalPrice = this.productCartService.getTotalPrice();
-  }
-
-  public clickRemove() {
-    this.totalPrice = this.productCartService.getTotalPrice();
+    this.productCartService.totalPrice.subscribe(
+      (price) => (this.totalPrice = price)
+    );
   }
 
   public closeProductCart() {
