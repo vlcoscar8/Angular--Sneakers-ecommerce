@@ -1,3 +1,4 @@
+import { ReplaySubject, Subject } from 'rxjs';
 import { IProduct } from '../product/model/product.model';
 import { Injectable } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class ProductCartService {
   public cartProducts: any[] = [];
   public totalPrice: number = 0;
+  public existProducts: ReplaySubject<boolean> = new ReplaySubject();
 
   constructor() {}
 
@@ -37,6 +39,8 @@ export class ProductCartService {
     this.cartProducts.forEach((product) => {
       this.totalPrice += product.product.price * product.units;
     });
+
+    this.existProducts.next(true);
   }
 
   /**
@@ -54,6 +58,10 @@ export class ProductCartService {
     this.cartProducts.splice(this.cartProducts.indexOf(deletedProduct), 1);
 
     this.totalPrice -= product.product.price * product.units;
+
+    if (this.cartProducts.length === 0) {
+      this.existProducts.next(false);
+    }
   }
 
   public getTotalPrice() {

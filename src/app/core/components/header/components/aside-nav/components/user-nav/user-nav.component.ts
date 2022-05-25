@@ -53,9 +53,11 @@ export class UserNavComponent implements OnInit {
     this.buttonClicked = '';
     this.isLogged = this.userService.isLoggedIn();
 
-    this.userService
-      .getUserProfile(this.userService.userId())
-      .subscribe((res) => (this.username = res.data.username));
+    if (this.isLogged) {
+      this.userService
+        .getUserProfile(this.userService.userId())
+        .subscribe((res) => (this.username = res.data.username));
+    }
   }
 
   public openForm(value: any) {
@@ -87,6 +89,7 @@ export class UserNavComponent implements OnInit {
   public logout() {
     this.userService.logout();
     this.closeNav?.emit(false);
+    this.router.navigate(['']);
   }
 
   public closeUserNav() {

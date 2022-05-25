@@ -27,7 +27,7 @@ export class ExitGuard implements CanDeactivate<unknown> {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.productCartService.getCartProducts()) {
+    if (this.productCartService.existProducts) {
       return window.confirm(
         'Todavia tienes productos en el carrito, no quieres finalizar el pedido todavia?'
       );
