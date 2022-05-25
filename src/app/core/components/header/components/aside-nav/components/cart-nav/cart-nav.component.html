@@ -11,11 +11,14 @@
     <h2>Precio total: {{ totalPrice }} €</h2>
   </div>
   <button
-    *ngIf="productsCart.length > 0"
+    *ngIf="productsCart.length > 0 && userLogged"
     [routerLink]="['/buy-product']"
     class="button__cart"
     (click)="closeProductCart()"
   >
     Ver bolsa
+  </button>
+  <button *ngIf="productsCart.length > 0 && !userLogged" class="button__cart" (click)="openForm()">
+    Iniciar sesión
   </button>
 </div>

@@ -10,6 +10,7 @@
     [isDesktop]="isDesktop"
     [cartProductsLenght]="cartProducts?.length"
     (cartProductClosed)="cartProductClosed($event)"
+    (openFormLogin)="openFormLogin()"
   ></app-cart-nav>
   <app-user-nav
     *ngIf="userNavOpened"

@@ -1,6 +1,6 @@
 import { UserService } from './../../../../../../services/user/user.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,11 +14,11 @@ import {
   styleUrls: ['./user-nav.component.scss'],
 })
 export class UserNavComponent implements OnInit {
-  public buttonClicked: string = '';
   public loginForm?: FormGroup;
   public signupForm?: FormGroup;
   public isLogged?: boolean;
   public username?: string;
+  public buttonClicked: string = '';
 
   @Output() public closeNav: EventEmitter<boolean> = new EventEmitter();
 

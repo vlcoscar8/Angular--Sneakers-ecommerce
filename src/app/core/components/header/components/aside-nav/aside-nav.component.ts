@@ -7,6 +7,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./aside-nav.component.scss'],
 })
 export class AsideNavComponent {
+  public buttonClicked: string = '';
+
   @Input() public userNavOpened: boolean = false;
   @Input() public cartOpened: boolean = false;
   @Input() public isDesktop?: boolean;
@@ -26,5 +28,9 @@ export class AsideNavComponent {
   public cartProductClosed(value: boolean) {
     this.cartOpened = value;
     this.cartNavClosed.emit(value);
+  }
+
+  public openFormLogin() {
+    this.userNavClosed.emit(true);
   }
 }
