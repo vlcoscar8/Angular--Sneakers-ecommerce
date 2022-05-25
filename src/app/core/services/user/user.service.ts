@@ -51,7 +51,7 @@ export class UserService {
     }
   }
 
-  public isLoggedIn() {
+  public isLoggedIn(): boolean {
     let authToken = localStorage.getItem(ACCESS_TOKEN);
     return authToken !== null;
   }

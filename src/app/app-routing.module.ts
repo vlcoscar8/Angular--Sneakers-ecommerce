@@ -1,6 +1,8 @@
+import { AuthGuard } from './core/guards/auth/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExitGuard } from './core/guards/exit/exit.guard';
 
 const routes: Routes = [
   {
@@ -27,6 +29,7 @@ const routes: Routes = [
     path: 'user-account',
     loadChildren: () =>
       import('src/app/pages/user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'buy-product',
@@ -34,6 +37,8 @@ const routes: Routes = [
       import('src/app/pages/product-buy/product-buy.module').then(
         (m) => m.ProductBuyModule
       ),
+    canActivate: [AuthGuard],
+    canDeactivate: [ExitGuard],
   },
   {
     path: '**',

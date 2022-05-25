@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth/auth.guard';
 import { UserService } from './services/user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
@@ -27,7 +28,7 @@ import { AsideNavComponent } from './components/header/components/aside-nav/asid
     UserNavComponent,
     AsideNavComponent,
   ],
-  providers: [ProductCartService, ProductsService, UserService],
+  providers: [ProductCartService, ProductsService, UserService, AuthGuard],
   imports: [
     CommonModule,
     RouterModule,
