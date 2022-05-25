@@ -87,4 +87,8 @@ export class UserNavComponent implements OnInit {
     this.userService.logout();
     this.closeNav?.emit(false);
   }
+
+  public closeUserNav() {
+    this.closeNav?.emit(false);
+  }
 }

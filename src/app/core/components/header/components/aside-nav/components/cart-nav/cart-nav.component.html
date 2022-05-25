@@ -14,7 +14,8 @@
     *ngIf="productsCart.length > 0"
     [routerLink]="['/buy-product']"
     class="button__cart"
+    (click)="closeProductCart()"
   >
-    Comprar
+    Ver bolsa
   </button>
 </div>

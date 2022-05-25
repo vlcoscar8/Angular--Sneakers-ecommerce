@@ -14,11 +14,17 @@ export class AsideNavComponent {
   @Input() public cartProducts?: Object[];
 
   @Output() public userNavClosed: EventEmitter<boolean> = new EventEmitter();
+  @Output() public cartNavClosed: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {}
 
   public closeNav(value: boolean) {
     this.userNavOpened = value;
     this.userNavClosed.emit(value);
+  }
+
+  public cartProductClosed(value: boolean) {
+    this.cartOpened = value;
+    this.cartNavClosed.emit(value);
   }
 }

@@ -24,6 +24,18 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'user-account',
+    loadChildren: () =>
+      import('src/app/pages/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'buy-product',
+    loadChildren: () =>
+      import('src/app/pages/product-buy/product-buy.module').then(
+        (m) => m.ProductBuyModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: '',
     component: HomeComponent,

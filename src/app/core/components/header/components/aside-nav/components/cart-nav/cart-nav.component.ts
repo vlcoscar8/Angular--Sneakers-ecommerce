@@ -1,5 +1,12 @@
 import { ProductCartService } from '../../../../../../services/product-cart/productcart.service';
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-cart-nav',
@@ -12,6 +19,8 @@ export class CartNavComponent implements OnInit, OnChanges {
 
   @Input() public isDesktop?: boolean;
   @Input() public cartProductsLenght?: number;
+  @Output() public cartProductClosed: EventEmitter<boolean> =
+    new EventEmitter();
 
   constructor(private productCartService: ProductCartService) {}
 
@@ -25,5 +34,9 @@ export class CartNavComponent implements OnInit, OnChanges {
 
   public clickRemove() {
     this.totalPrice = this.productCartService.getTotalPrice();
+  }
+
+  public closeProductCart() {
+    this.cartProductClosed.emit(false);
   }
 }

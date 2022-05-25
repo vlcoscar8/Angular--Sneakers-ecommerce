@@ -80,6 +80,8 @@ export class HeaderComponent implements OnInit {
    */
   public closeFilter() {
     this.showFilter = false;
+    this.cartOpened = false;
+    this.userNavOpened = false;
   }
 
   /**
@@ -103,5 +105,12 @@ export class HeaderComponent implements OnInit {
    */
   public userNavClosed(value: boolean) {
     this.userNavOpened = value;
+  }
+
+  /**
+   * Close the cart nav when the user click on see the products to buy
+   */
+  public cartNavClosed(value: boolean) {
+    this.cartOpened = value;
   }
 }
