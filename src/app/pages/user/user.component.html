@@ -1,1 +1,22 @@
-<p>user works!</p>
+<div class="user-page" *ngIf="userInfo">
+  <img
+    src="https://wallpapercave.com/wp/wp2927406.jpg"
+    class="user-page__wallpaper"
+  />
+  <div class="user-page__img">
+    <img src="{{ userInfo.img }}" />
+  </div>
+  <div class="user-page__info">
+    <div class="user-page__info--left">
+      <div class="upper">
+        <button class="upper__btn">Editar</button>
+      </div>
+      <div class="down">
+        <p>Form</p>
+      </div>
+    </div>
+    <div class="user-page__info--right">
+      <h2>Lista de productos comprados:</h2>
+    </div>
+  </div>
+</div>

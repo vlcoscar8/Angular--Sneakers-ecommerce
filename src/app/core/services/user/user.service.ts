@@ -70,7 +70,7 @@ export class UserService {
 
   public getUserProfile(id: string): Observable<IUserResponseApi> {
     return this.httpClient.get<IUserResponseApi>(
-      `${environment.apiUrl}/user/${id}`
+      `${environment.apiUrl}user/${id}`
     );
   }
 }

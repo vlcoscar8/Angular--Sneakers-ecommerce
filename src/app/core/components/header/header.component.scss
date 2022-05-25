@@ -7,7 +7,7 @@
   padding: 1rem;
   gap: 1rem;
   background-color: black;
-  position: sticky;
+  position: relative;
   width: 95%;
   z-index: 10;
 
@@ -29,6 +29,12 @@
   &__list {
     display: flex;
     gap: 2rem;
+
+    @include desktop {
+      position: absolute;
+      left: 45%;
+      top: 1.2rem;
+    }
 
     &--btn {
       background-color: transparent;
@@ -95,4 +101,3 @@
   color: rgb(226, 175, 79);
   border-bottom: 1.3px solid rgb(226, 175, 79);
 }
-
