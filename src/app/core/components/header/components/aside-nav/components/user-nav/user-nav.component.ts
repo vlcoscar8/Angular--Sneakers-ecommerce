@@ -87,7 +87,7 @@ export class UserNavComponent implements OnInit {
   }
 
   public logout() {
-    this.userService.logout();
+    this.userService.logout().subscribe((res) => console.log(res));
     this.closeNav?.emit(false);
     this.router.navigate(['']);
   }

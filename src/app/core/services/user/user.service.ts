@@ -42,13 +42,15 @@ export class UserService {
       );
   }
 
-  public logout() {
+  public logout(): Observable<any> {
     let removeToken = localStorage.removeItem(ACCESS_TOKEN);
     this.userLogged$.next(false);
 
     if (removeToken === null) {
       this.router.navigate(['']);
     }
+
+    return this.httpClient.post<any>(`${environment.apiUrl}user/logout`, '');
   }
 
   public isLoggedIn(): boolean {

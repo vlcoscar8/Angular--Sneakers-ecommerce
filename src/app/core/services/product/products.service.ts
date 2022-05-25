@@ -36,4 +36,11 @@ export class ProductsService {
   public getShopHome(): Observable<any> {
     return this.httpClient.get<IProduct>(`${environment.apiUrl}home`);
   }
+
+  public buyProduct(userId: string, body: any): Observable<any> {
+    return this.httpClient.post<IProduct>(
+      `${environment.apiUrl}user/buy/${userId}`,
+      body
+    );
+  }
 }

@@ -1,9 +1,10 @@
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { PaginationService } from './services/pagination/pagination.service';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { UserService } from './services/user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductsService } from './services/product/products.service';
 import { ProductCartService } from './services/product-cart/productcart.service';
 import { RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ import { HeaderFilterComponent } from './components/header/components/header-fil
 import { CartNavComponent } from './components/header/components/aside-nav/components/cart-nav/cart-nav.component';
 import { UserNavComponent } from './components/header/components/aside-nav/components/user-nav/user-nav.component';
 import { AsideNavComponent } from './components/header/components/aside-nav/aside-nav.component';
+import { ExitGuard } from './guards/exit/exit.guard';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,12 @@ import { AsideNavComponent } from './components/header/components/aside-nav/asid
     UserService,
     PaginationService,
     AuthGuard,
+    ExitGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   imports: [
     CommonModule,
