@@ -19,6 +19,7 @@ export class UserNavComponent implements OnInit {
   public isLogged?: boolean;
   public username?: string;
   public buttonClicked: string = '';
+  public error?: string;
 
   @Output() public closeNav: EventEmitter<boolean> = new EventEmitter();
 
@@ -76,11 +77,11 @@ export class UserNavComponent implements OnInit {
 
   public login() {
     if (this.loginForm?.value) {
-      this.userService
-        .login(this.loginForm.value)
-        .subscribe((res) => console.log(res));
+      this.userService.login(this.loginForm.value).subscribe({
+        next: (res) => this.closeNav?.emit(false),
+        error: (err) => (this.error = err.error),
+      });
     }
-    this.closeNav?.emit(false);
   }
 
   public logout() {

@@ -105,11 +105,16 @@
       <button type="submit" class="loginbtn" [disabled]="!loginForm.valid">
         Iniciar sesión
       </button>
+      <p *ngIf="error" class="error">{{ error }}</p>
     </form>
   </div>
   <div *ngIf="isLogged" class="user__buttons">
     <h1>Hola {{ username }}</h1>
-    <button class="user__buttons--signup" [routerLink]="['user-account']" (click)="closeUserNav()">
+    <button
+      class="user__buttons--signup"
+      [routerLink]="['user-account']"
+      (click)="closeUserNav()"
+    >
       Mi cuenta
     </button>
     <button class="user__buttons--login" (click)="logout()">
