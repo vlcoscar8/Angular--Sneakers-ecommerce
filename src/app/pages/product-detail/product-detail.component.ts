@@ -1,3 +1,4 @@
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { UserService } from './../../core/services/user/user.service';
 import { switchMap } from 'rxjs';
 import { ProductCartService } from './../../core/services/product-cart/productcart.service';
@@ -122,8 +123,11 @@ export class ProductDetailComponent implements OnInit {
 
   public addComentary() {
     const formValue = this.commentForm?.value;
+
     formValue.productId = this.product?.id;
+
     const userId = this.userService.userId();
+
     this.userService.addCommentary(userId, formValue).subscribe((res) => {
       this.comments = res.data.comments;
     });

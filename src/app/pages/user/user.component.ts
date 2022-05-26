@@ -25,7 +25,7 @@ import {
   IUserResponseApi,
 } from './../../core/services/user/models/user.model';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user',
@@ -39,13 +39,15 @@ export class UserComponent implements OnInit, OnChanges {
   public products: IProduct[] = [];
   public currentPage: number = 1;
   public maxPage: number = 1;
+  public imageUrl?: SafeResourceUrl;
 
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router,
     private productService: ProductsService,
-    private pagination: PaginationService
+    private pagination: PaginationService,
+    private sanitazer: DomSanitizer
   ) {
     this.userInfoForm = this.fb.group({
       name: new FormControl('', [Validators.pattern('[A-Za-z]*')]),
@@ -94,9 +96,13 @@ export class UserComponent implements OnInit, OnChanges {
     const userId = this.userService.userId();
     const formValue = this.userInfoForm?.value;
 
-    this.userService
-      .editUser(userId, formValue)
-      .subscribe((res) => (this.userInfo = res));
+    this.userService.editUser(userId, formValue).subscribe((res) => {
+      this.userInfo = res;
+
+      this.imageUrl = res.img
+        ? this.sanitazer.bypassSecurityTrustResourceUrl(res.img)
+        : '';
+    });
 
     this.editUserView = !this.editUserView;
   }

@@ -4,10 +4,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 160vh;
+  height: 210vh;
 
   @include desktop {
-    height: 120vh;
+    height: 100vh;
   }
 
   &__wallpaper {
@@ -104,7 +104,7 @@
         justify-content: start;
         align-items: flex-start;
         gap: 1rem;
-        padding: 2rem;
+        padding: 2rem 4rem;
 
         label {
           font-size: 1.2rem;

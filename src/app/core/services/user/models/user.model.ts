@@ -1,5 +1,3 @@
-import { IProduct } from 'src/app/core/services/product/model/product.model';
-
 export interface IUser {
   username: string;
   password?: string;
