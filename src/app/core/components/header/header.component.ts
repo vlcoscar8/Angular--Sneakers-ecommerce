@@ -1,5 +1,4 @@
 import { ProductCartService } from '../../services/product-cart/productcart.service';
-import { IProduct } from '../../services/product/model/product.model';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 
@@ -11,7 +10,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   public path?: string;
   public query?: string;
-  public isDesktop?: boolean = false;
+  public isDesktop?: boolean;
   public navClicked?: boolean = false;
   public showFilter?: boolean = false;
   public genre?: string;
@@ -25,14 +24,15 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   @HostListener('window:resize')
-
   /**
-   * Check if the windowHeight is desktop or mobile with a breakpoint in 500px
+   * Check if the windowWidth is desktop or mobile with a breakpoint in 500px
    */
   onResize() {
     window.innerWidth > 500
       ? (this.isDesktop = true)
       : (this.isDesktop = false);
+
+    console.log(this.isDesktop);
   }
 
   /**

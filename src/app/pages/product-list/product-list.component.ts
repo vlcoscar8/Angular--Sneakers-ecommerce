@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
   public brand?: string;
   public genre?: string;
   public filterValue: string = '';
-  public sortPriceValue?: boolean;
+  public sortPriceValue?: string;
   public brands: string[] = [];
   public currentPage: number = 1;
   public maxPage: number = 1;
@@ -49,11 +49,11 @@ export class ProductListComponent implements OnInit {
   }
 
   public sortHighPrice() {
-    this.sortPriceValue = true;
+    this.sortPriceValue = 'caro';
   }
 
   public sortLowerPrice() {
-    this.sortPriceValue = false;
+    this.sortPriceValue = 'barato';
   }
 
   public filterBrand(brand: string) {

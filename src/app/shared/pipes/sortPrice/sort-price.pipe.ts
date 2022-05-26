@@ -6,11 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortPrice',
 })
 export class SortPricePipe implements PipeTransform {
-  transform(value: IProduct[], criteria?: boolean): IProduct[] {
-    if (criteria) {
+  transform(value: IProduct[], criteria?: string): IProduct[] {
+    if (criteria === 'caro') {
       return value.sort((a, b) => b.price - a.price);
-    } else {
+    } else if (criteria === 'barato') {
       return value.sort((a, b) => a.price - b.price);
     }
+
+    return value;
   }
 }

@@ -124,9 +124,9 @@ export class ProductDetailComponent implements OnInit {
     const formValue = this.commentForm?.value;
     formValue.productId = this.product?.id;
     const userId = this.userService.userId();
-    this.userService
-      .addCommentary(userId, formValue)
-      .subscribe((res) => (this.comments = res.data.comments));
+    this.userService.addCommentary(userId, formValue).subscribe((res) => {
+      this.comments = res.data.comments;
+    });
     this.formOpened = false;
   }
 }
