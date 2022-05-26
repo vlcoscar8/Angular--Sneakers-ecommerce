@@ -1,15 +1,6 @@
 import { PaginationService } from './../../core/services/pagination/pagination.service';
 import { ProductsService } from './../../core/services/product/products.service';
-import { ProductCartService } from './../../core/services/product-cart/productcart.service';
-import {
-  combineLatest,
-  concatMap,
-  forkJoin,
-  map,
-  switchMap,
-  tap,
-  Observable,
-} from 'rxjs';
+import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/core/services/product/model/product.model';
 import { Router } from '@angular/router';
 import {
@@ -19,12 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from './../../core/services/user/user.service';
-import {
-  IUser,
-  IUserBuys,
-  IUserResponseApi,
-} from './../../core/services/user/models/user.model';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { IUser } from './../../core/services/user/models/user.model';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -40,6 +27,8 @@ export class UserComponent implements OnInit, OnChanges {
   public currentPage: number = 1;
   public maxPage: number = 1;
   public imageUrl?: SafeResourceUrl;
+
+  fileToUpload: File | null = null;
 
   constructor(
     private userService: UserService,
@@ -65,6 +54,10 @@ export class UserComponent implements OnInit, OnChanges {
       .pipe(
         switchMap((res) => {
           this.userInfo = res.data;
+
+          this.imageUrl = res.data.img
+            ? this.sanitazer.bypassSecurityTrustResourceUrl(res.data.img)
+            : '';
 
           let arrayProductsId: number[] = [];
           res.data.userBuys?.forEach((product) => {
@@ -96,12 +89,25 @@ export class UserComponent implements OnInit, OnChanges {
     const userId = this.userService.userId();
     const formValue = this.userInfoForm?.value;
 
-    this.userService.editUser(userId, formValue).subscribe((res) => {
+    const formData: FormData = new FormData();
+
+    formData.append('name', formValue.name);
+    formData.append('surname', formValue.surname);
+    formData.append('age', formValue.age);
+    formData.append(
+      'img',
+      this.fileToUpload ? this.fileToUpload : '',
+      this.fileToUpload ? this.fileToUpload.name : ''
+    );
+
+    this.userService.editUser(userId, formData).subscribe((res) => {
       this.userInfo = res;
 
-      this.imageUrl = res.img
-        ? this.sanitazer.bypassSecurityTrustResourceUrl(res.img)
-        : '';
+      console.log(res);
+
+      // this.imageUrl = res.img
+      //   ? this.sanitazer.bypassSecurityTrustResourceUrl(res.img)
+      //   : '';
     });
 
     this.editUserView = !this.editUserView;
@@ -113,5 +119,10 @@ export class UserComponent implements OnInit, OnChanges {
 
   public nextPage() {
     this.currentPage += 1;
+  }
+
+  handleFileInput(event: any) {
+    const files = event.target.files;
+    this.fileToUpload = files.item(0);
   }
 }

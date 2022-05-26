@@ -4,7 +4,7 @@
     class="user-page__wallpaper"
   />
   <div class="user-page__img">
-    <img [src]="userInfo.img" />
+    <img [src]="imageUrl" />
   </div>
   <div class="user-page__info">
     <div class="user-page__info--left">
@@ -56,8 +56,14 @@
         >
           Solo se aceptan números
         </p>
+
         <label>Imágen perfil:</label>
-        <input placeholder="Url imagen" type="file" formControlName="img" />
+        <input
+          placeholder="Url imagen"
+          type="file"
+          formControlName="img"
+          (change)="handleFileInput($event)"
+        />
         <button class="btn">Editar usuario</button>
       </form>
     </div>
