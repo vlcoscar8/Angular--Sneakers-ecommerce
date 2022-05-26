@@ -69,14 +69,14 @@ export class UserComponent implements OnInit, OnChanges {
             arrayProductsId.push(product.productId);
           });
 
-          return [...new Set(arrayProductsId)];
+          return [...new Set(arrayProductsId.reverse())];
         })
       )
-      .subscribe((res) =>
+      .subscribe((res) => {
         this.productService
           .getProductById(res)
-          .subscribe((res) => this.products.push(res))
-      );
+          .subscribe((res) => this.products.push(res));
+      });
 
     this.userService.userInfo$.subscribe((res) => (this.userInfo = res));
     this.pagination.maxPage$.subscribe((page) => (this.maxPage = page));
@@ -97,6 +97,7 @@ export class UserComponent implements OnInit, OnChanges {
     this.userService
       .editUser(userId, formValue)
       .subscribe((res) => (this.userInfo = res));
+
     this.editUserView = !this.editUserView;
   }
 

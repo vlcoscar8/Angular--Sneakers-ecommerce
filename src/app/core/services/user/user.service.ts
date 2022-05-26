@@ -80,4 +80,11 @@ export class UserService {
       .post<IUser>(`${environment.apiUrl}user/${id}`, form)
       .pipe(tap((res: IUser) => this.userInfo$.next(res)));
   }
+
+  public addCommentary(userId: string, form: object): Observable<any> {
+    return this.httpClient.post<Observable<any>>(
+      `${environment.apiUrl}user/comment/${userId}`,
+      form
+    );
+  }
 }

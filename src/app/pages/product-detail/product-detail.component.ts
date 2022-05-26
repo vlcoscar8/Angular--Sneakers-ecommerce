@@ -1,3 +1,4 @@
+import { UserService } from './../../core/services/user/user.service';
 import { switchMap } from 'rxjs';
 import { ProductCartService } from './../../core/services/product-cart/productcart.service';
 import { ProductsService } from './../../core/services/product/products.service';
@@ -21,18 +22,22 @@ export class ProductDetailComponent implements OnInit {
   public mainImg?: string;
   public secondaryImg?: string[] = [];
   public sizes?: string[] = [];
-  public comments?: any[];
   public quantity: number[] = [];
   public sizeSelected?: string;
   public quantSelected?: number;
   public quantForm?: FormGroup;
   public btnClicked: boolean = false;
+  public userLogged: boolean = false;
+  public commentForm?: FormGroup;
+  public formOpened: boolean = false;
+  public comments?: any[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
     private productCartService: ProductCartService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService
   ) {
     this.quantForm = this.fb.group({
       quantSelected: new FormControl(1, [
@@ -40,6 +45,10 @@ export class ProductDetailComponent implements OnInit {
         Validators.max(10),
         Validators.required,
       ]),
+    });
+
+    this.commentForm = this.fb.group({
+      content: new FormControl(''),
     });
   }
 
@@ -68,8 +77,9 @@ export class ProductDetailComponent implements OnInit {
         for (let i = 1; i <= product.units; i++) {
           this.quantity.push(i);
         }
-        console.log(this.comments);
       });
+
+    this.userLogged = this.userService.isLoggedIn();
   }
 
   /**
@@ -104,5 +114,19 @@ export class ProductDetailComponent implements OnInit {
 
   public selectSize(size: string) {
     this.sizeSelected = size;
+  }
+
+  public openForm() {
+    this.formOpened = !this.formOpened;
+  }
+
+  public addComentary() {
+    const formValue = this.commentForm?.value;
+    formValue.productId = this.product?.id;
+    const userId = this.userService.userId();
+    this.userService
+      .addCommentary(userId, formValue)
+      .subscribe((res) => (this.comments = res.data.comments));
+    this.formOpened = false;
   }
 }

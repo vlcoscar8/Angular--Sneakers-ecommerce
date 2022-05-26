@@ -60,19 +60,36 @@
       <button type="submit" class="btn">Añadir a la cesta</button>
     </form>
     <div class="product__info--comments">
-      <h2>Comentarios:</h2>
-      <div *ngFor="let commentary of comments" class="commentary">
-        <div class="commentary__user">
-          <img [src]="commentary?.user[0].img" />
-          <div class="commentary__user--info">
-            <h2>{{ commentary?.user[0].username }}</h2>
-            <h2 class="data">{{ commentary?.data.split("G")[0] }}</h2>
+      <div class="commentary__header">
+        <h2>Comentarios:</h2>
+        <button *ngIf="userLogged" (click)="openForm()">
+          {{ formOpened ? "cancelar" : "Añadir commentario" }}
+        </button>
+      </div>
+      <form
+        action="post"
+        *ngIf="commentForm && formOpened"
+        [formGroup]="commentForm"
+        (submit)="addComentary()"
+      >
+        <label class="commentary__form">Tu comentario:</label>
+        <textarea cols="30" rows="10" formControlName="content"></textarea>
+        <button type="submit">Comentar</button>
+      </form>
+      <div class="commentary__container">
+        <div *ngFor="let commentary of comments" class="commentary">
+          <div class="commentary__user">
+            <img [src]="commentary?.user[0].img" />
+            <div class="commentary__user--info">
+              <h2>{{ commentary?.user[0].username }}</h2>
+              <h2 class="data">{{ commentary?.data.split("G")[0] }}</h2>
+            </div>
           </div>
-        </div>
-        <div class="commentary__content">
-          <h2>
-            {{ commentary?.content }}
-          </h2>
+          <div class="commentary__content">
+            <h2>
+              {{ commentary?.content }}
+            </h2>
+          </div>
         </div>
       </div>
     </div>
