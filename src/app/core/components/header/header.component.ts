@@ -31,8 +31,6 @@ export class HeaderComponent implements OnInit {
     window.innerWidth > 500
       ? (this.isDesktop = true)
       : (this.isDesktop = false);
-
-    console.log(this.isDesktop);
   }
 
   /**
