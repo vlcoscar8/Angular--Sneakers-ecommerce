@@ -9,14 +9,80 @@
   <div class="user-page__info">
     <div class="user-page__info--left">
       <div class="upper">
-        <button class="upper__btn">Editar</button>
+        <button class="upper__btn" (click)="showForm()">Editar</button>
       </div>
-      <div class="down">
-        <p>Form</p>
+      <div class="down" *ngIf="!editUserView">
+        <h2>Nombre usuario: {{ userInfo.username }}</h2>
+        <h2>Nombre: {{ userInfo.name ? userInfo.name : "Sin definir" }}</h2>
+        <h2>
+          Apellidos: {{ userInfo.surname ? userInfo.surname : "Sin definir" }}
+        </h2>
+        <h2>Edad: {{ userInfo.age ? userInfo.age : "Sin definir" }}</h2>
       </div>
+      <form
+        class="down"
+        *ngIf="editUserView && userInfoForm"
+        [formGroup]="userInfoForm"
+        (submit)="submitForm()"
+      >
+        <label>Nombre:</label>
+        <input type="text" placeholder="Nombre" formControlName="name" />
+        <p
+          *ngIf="
+            !userInfoForm.get('name')?.valid && userInfoForm.get('name')?.dirty
+          "
+          class="input-error"
+        >
+          Solo se aceptan letras
+        </p>
+        <label>Apellidos:</label>
+        <input type="text" placeholder="Apellidos" formControlName="surname" />
+        <p
+          *ngIf="
+            !userInfoForm.get('surname')?.valid &&
+            userInfoForm.get('surname')?.dirty
+          "
+          class="input-error"
+        >
+          Solo se aceptan letras
+        </p>
+        <label>Edad:</label>
+        <input type="number" placeholder="Edad" formControlName="age" />
+        <p
+          *ngIf="
+            !userInfoForm.get('age')?.valid && userInfoForm.get('age')?.dirty
+          "
+          class="input-error"
+        >
+          Solo se aceptan números
+        </p>
+        <label>Imágen perfil:</label>
+        <input placeholder="Url imagen" type="file" formControlName="img" />
+        <button class="btn">Editar usuario</button>
+      </form>
     </div>
     <div class="user-page__info--right">
       <h2>Lista de productos comprados:</h2>
+      <div class="gallery__products">
+        <app-product
+          *ngFor="let product of products | pagination: currentPage:2"
+          [product]="product"
+          class="product"
+        ></app-product>
+      </div>
+      <div class="gallery__pagination">
+        <i
+          class="fa-solid fa-chevron-left arrow"
+          *ngIf="currentPage !== 1"
+          (click)="previousPage()"
+        ></i>
+        <h1>{{ currentPage }}</h1>
+        <i
+          class="fa-solid fa-chevron-right arrow"
+          (click)="nextPage()"
+          *ngIf="currentPage < maxPage"
+        ></i>
+      </div>
     </div>
   </div>
 </div>

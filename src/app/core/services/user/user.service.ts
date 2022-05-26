@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, Observable, tap } from 'rxjs';
+import { Subject, Observable, tap, ReplaySubject } from 'rxjs';
 import {
   IUser,
   IUserResponseApi,
@@ -16,6 +16,7 @@ const ACCESS_TOKEN = 'access_token';
 })
 export class UserService {
   public userLogged$: Subject<boolean> = new Subject();
+  public userInfo$: ReplaySubject<IUser> = new ReplaySubject();
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
@@ -72,5 +73,11 @@ export class UserService {
     return this.httpClient.get<IUserResponseApi>(
       `${environment.apiUrl}user/${id}`
     );
+  }
+
+  public editUser(id: string, form: object): Observable<IUser> {
+    return this.httpClient
+      .post<IUser>(`${environment.apiUrl}user/${id}`, form)
+      .pipe(tap((res: IUser) => this.userInfo$.next(res)));
   }
 }
