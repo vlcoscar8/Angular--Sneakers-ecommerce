@@ -23,6 +23,12 @@
       </select>
     </div>
   </div>
+  <div *ngIf="!products" class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
   <div class="gallery__container" *ngIf="products">
     <app-product
       *ngFor="
