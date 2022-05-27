@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://sneakersecommerceapi.vercel.app/',
+  apiUrl: 'https://ecommerce-sneakers-api.herokuapp.com/',
 };
+
+// https://sneakersecommerceapi.vercel.app/
 
 /*
  * For easier debugging in development mode, you can import the following file

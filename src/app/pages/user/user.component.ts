@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 import { PaginationService } from './../../core/services/pagination/pagination.service';
 import { ProductsService } from './../../core/services/product/products.service';
 import { switchMap } from 'rxjs';
@@ -91,23 +93,15 @@ export class UserComponent implements OnInit, OnChanges {
 
     const formData: FormData = new FormData();
 
+    let image = this.fileToUpload ? this.fileToUpload : '';
+
     formData.append('name', formValue.name);
     formData.append('surname', formValue.surname);
     formData.append('age', formValue.age);
-    formData.append(
-      'img',
-      this.fileToUpload ? this.fileToUpload : '',
-      this.fileToUpload ? this.fileToUpload.name : ''
-    );
+    formData.append('img', image);
 
     this.userService.editUser(userId, formData).subscribe((res) => {
       this.userInfo = res;
-
-      console.log(res);
-
-      // this.imageUrl = res.img
-      //   ? this.sanitazer.bypassSecurityTrustResourceUrl(res.img)
-      //   : '';
     });
 
     this.editUserView = !this.editUserView;
@@ -122,7 +116,7 @@ export class UserComponent implements OnInit, OnChanges {
   }
 
   handleFileInput(event: any) {
-    const files = event.target.files;
-    this.fileToUpload = files.item(0);
+    const files = event.target.files[0];
+    this.fileToUpload = files;
   }
 }
