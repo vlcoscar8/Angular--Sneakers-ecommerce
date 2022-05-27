@@ -1,10 +1,7 @@
-import { environment } from 'src/environments/environment';
-import { HttpHeaders } from '@angular/common/http';
 import { PaginationService } from './../../core/services/pagination/pagination.service';
 import { ProductsService } from './../../core/services/product/products.service';
 import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/core/services/product/model/product.model';
-import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormControl,
@@ -13,7 +10,7 @@ import {
 } from '@angular/forms';
 import { UserService } from './../../core/services/user/user.service';
 import { IUser } from './../../core/services/user/models/user.model';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -21,7 +18,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit, OnChanges {
+export class UserComponent implements OnInit {
   public userInfo?: IUser;
   public editUserView: boolean = false;
   public userInfoForm?: FormGroup;
@@ -35,7 +32,6 @@ export class UserComponent implements OnInit, OnChanges {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    private router: Router,
     private productService: ProductsService,
     private pagination: PaginationService,
     private sanitazer: DomSanitizer
@@ -79,10 +75,6 @@ export class UserComponent implements OnInit, OnChanges {
     this.pagination.maxPage$.subscribe((page) => (this.maxPage = page));
   }
 
-  ngOnChanges(): void {
-    this.router.navigate(['user-account']);
-  }
-
   public showForm() {
     this.editUserView = !this.editUserView;
   }
@@ -102,6 +94,9 @@ export class UserComponent implements OnInit, OnChanges {
 
     this.userService.editUser(userId, formData).subscribe((res) => {
       this.userInfo = res;
+      this.imageUrl = res.img
+        ? this.sanitazer.bypassSecurityTrustResourceUrl(res.img)
+        : '';
     });
 
     this.editUserView = !this.editUserView;
