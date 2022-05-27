@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.ProductsService.getShopHome().subscribe((info) => {
-      this.lastProducts = info[0].lastBuys;
+      this.lastProducts = info[0].lastBuys.reverse();
     });
   }
 }

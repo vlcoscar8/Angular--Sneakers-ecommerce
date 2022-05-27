@@ -70,6 +70,9 @@
     <div class="user-page__info--right">
       <h2>Lista de productos comprados:</h2>
       <div class="gallery__products">
+        <p *ngIf="products.length === 0">
+          Todavia no has comprado ningún producto
+        </p>
         <app-product
           *ngFor="let product of products | pagination: currentPage:2"
           [product]="product"
@@ -82,7 +85,7 @@
           *ngIf="currentPage !== 1"
           (click)="previousPage()"
         ></i>
-        <h1>{{ currentPage }}</h1>
+        <h1 *ngIf="products.length > 0">{{ currentPage }}</h1>
         <i
           class="fa-solid fa-chevron-right arrow"
           (click)="nextPage()"
