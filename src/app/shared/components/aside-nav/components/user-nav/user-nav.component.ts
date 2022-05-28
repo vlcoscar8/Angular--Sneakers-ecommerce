@@ -1,4 +1,4 @@
-import { UserService } from './../../../../../../services/user/user.service';
+import { UserService } from '../../../../../core/services/user/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {

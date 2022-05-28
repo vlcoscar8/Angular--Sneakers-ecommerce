@@ -1,5 +1,5 @@
-import { UserService } from './../../../../../../services/user/user.service';
-import { ProductCartService } from '../../../../../../services/product-cart/productcart.service';
+import { UserService } from '../../../../../core/services/user/user.service';
+import { ProductCartService } from '../../../../../core/services/product-cart/productcart.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({

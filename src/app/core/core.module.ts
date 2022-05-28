@@ -15,9 +15,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ResponsiveNavComponent } from './components/header/components/responsive-nav/responsive-nav.component';
 import { NavBtnComponent } from './components/header/components/nav-btn/nav-btn.component';
 import { HeaderFilterComponent } from './components/header/components/header-filter/header-filter.component';
-import { CartNavComponent } from './components/header/components/aside-nav/components/cart-nav/cart-nav.component';
-import { UserNavComponent } from './components/header/components/aside-nav/components/user-nav/user-nav.component';
-import { AsideNavComponent } from './components/header/components/aside-nav/aside-nav.component';
 import { ExitGuard } from './guards/exit/exit.guard';
 
 @NgModule({
@@ -27,9 +24,6 @@ import { ExitGuard } from './guards/exit/exit.guard';
     ResponsiveNavComponent,
     NavBtnComponent,
     HeaderFilterComponent,
-    CartNavComponent,
-    UserNavComponent,
-    AsideNavComponent,
   ],
   providers: [
     ProductCartService,
