@@ -44,9 +44,12 @@ export class UserComponent implements OnInit {
     });
   }
 
+  /**
+   * Get the user profile data and join in an array all the id products that the user have bought
+   * With the ids call the api again and get the info detail of the products
+   */
   ngOnInit(): void {
     const userId = this.userService.userId();
-
     this.userService
       .getUserProfile(userId)
       .pipe(
@@ -114,4 +117,6 @@ export class UserComponent implements OnInit {
     const files = event.target.files[0];
     this.fileToUpload = files;
   }
+
+  getUserProductList() {}
 }

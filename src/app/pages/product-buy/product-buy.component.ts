@@ -29,6 +29,10 @@ export class ProductBuyComponent implements OnInit {
     this.buyOK = false;
   }
 
+  /**
+   * Send to the api and object with the info of the product, the quantity and the size
+   * then remove the products from the cart list
+   */
   public buyProduct() {
     this.buyFinished = true;
 
