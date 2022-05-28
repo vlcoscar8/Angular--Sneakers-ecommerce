@@ -1,6 +1,6 @@
 import { PaginationService } from './../../core/services/pagination/pagination.service';
 import { ProductsService } from './../../core/services/product/products.service';
-import { switchMap } from 'rxjs';
+import { switchMap, Observable, forkJoin } from 'rxjs';
 import { IProduct } from 'src/app/core/services/product/model/product.model';
 import {
   FormBuilder,
@@ -65,14 +65,17 @@ export class UserComponent implements OnInit {
             arrayProductsId.push(product.productId);
           });
 
-          return [...new Set(arrayProductsId.reverse())];
+          let uniqueList: number[] = [...new Set(arrayProductsId.reverse())];
+          let observableArray: Observable<IProduct>[] = [];
+
+          uniqueList.forEach((id) =>
+            observableArray.push(this.productService.getProductById(id))
+          );
+
+          return forkJoin(observableArray);
         })
       )
-      .subscribe((res) => {
-        this.productService
-          .getProductById(res)
-          .subscribe((res) => this.products.push(res));
-      });
+      .subscribe((res) => (this.products = res));
 
     this.userService.userInfo$.subscribe((res) => (this.userInfo = res));
     this.pagination.maxPage$.subscribe((page) => (this.maxPage = page));
