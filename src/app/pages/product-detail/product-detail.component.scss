@@ -246,6 +246,37 @@
         @include desktop {
           align-self: flex-start;
         }
+
+        .commentary {
+          display: flex;
+          flex-direction: column;
+          padding: 1rem;
+
+          @include desktop {
+            align-self: flex-start;
+          }
+
+          &__user {
+            display: flex;
+            align-items: center;
+
+            img {
+              width: 5rem;
+            }
+
+            &--info {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 1rem;
+            }
+          }
+
+          &__content {
+            display: flex;
+            justify-content: start;
+          }
+        }
       }
     }
   }
