@@ -1,10 +1,11 @@
 <div class="header__filter">
-  <button [routerLink]="['/product-list', { genre: genre }]">
+  <button [routerLink]="['/product-list']" [queryParams]="{ genre: genre }">
     Todas las zapatillas
   </button>
   <button
     *ngFor="let brand of brands"
-    [routerLink]="['/product-list', { genre: genre, brand: brand }]"
+    [routerLink]="['/product-list']"
+    [queryParams]="{ genre: genre, brand: brand }"
   >
     {{ brand }}
   </button>

@@ -31,11 +31,13 @@ export class ProductListComponent implements OnInit {
    * then get the products list filtering by the querys usign the pipe with switchmap to concatenate asyncronus methods
    */
   ngOnInit(): void {
-    this.activatedRoute.params
+    this.activatedRoute.queryParams
       .pipe(
-        switchMap((params) => {
-          this.genre = params['genre'];
-          params['brand'] ? (this.brand = params['brand']) : (this.brand = '');
+        switchMap((queryParams) => {
+          this.genre = queryParams['genre'];
+          queryParams['brand']
+            ? (this.brand = queryParams['brand'])
+            : (this.brand = '');
 
           return this.productsService.getProducts(this.genre, this.brand);
         })
