@@ -209,15 +209,12 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
         align-self: center;
 
         textarea {
           resize: none;
           height: 5rem;
           width: 90%;
-          margin: 0;
 
           @include desktop {
             width: 50rem;
@@ -229,9 +226,6 @@
           height: 3rem;
           background-color: rgb(207, 155, 77);
           color: rgb(0, 0, 0);
-          border-radius: 1rem;
-          border: none;
-          font-size: 1.1rem;
           cursor: pointer;
         }
       }
@@ -243,18 +237,9 @@
         align-self: center;
         justify-content: center;
 
-        @include desktop {
-          align-self: flex-start;
-        }
-
         .commentary {
           display: flex;
           flex-direction: column;
-          padding: 1rem;
-
-          @include desktop {
-            align-self: flex-start;
-          }
 
           &__user {
             display: flex;
@@ -267,8 +252,6 @@
             &--info {
               display: flex;
               flex-direction: column;
-              align-items: flex-start;
-              gap: 1rem;
             }
           }
 
